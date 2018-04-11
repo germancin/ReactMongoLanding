@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import styled from 'styled-components';
 import {connect} from 'react-redux';
 import Leads from './components/Leads';
+import Landing from './components/Landing';
 
 
 class App extends Component {
@@ -16,11 +17,9 @@ class App extends Component {
 
                             <ul className="nav nav-pills">
                                 <li className="disabled">
-                                    <a href="/">
-                                        <Link to={'/'}>
-                                            <h1 className="App-title">Pigeons</h1>
-                                        </Link>
-                                    </a>
+                                    <Link to={'/'}>
+                                        <h1 className="App-title">Pigeons</h1>
+                                    </Link>
                                 </li>
                                 <li className="enabled">
                                     <Link to={'/leads'}>
@@ -31,8 +30,7 @@ class App extends Component {
 
                         </header>
                         <div className="App-intro">
-
-                            <Route exact path="/" component={Leads}/>
+                            <Route exact path="/" component={Landing}/>
                             <Route path="/leads" component={Leads}/>
                         </div>
                     </div>
@@ -43,14 +41,12 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-    // const {notes_reducer, users_reducer} = state;
-    // console.log(state);
+    const {leads_reducer} = state;
     return {
-        searching: "here",
+        leadsM: leads_reducer.leads,
     };
 };
 export default connect(mapStateToProps, {})(App);
-
 
 const AppContainer = styled.div`
 

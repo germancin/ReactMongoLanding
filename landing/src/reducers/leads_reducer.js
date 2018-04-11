@@ -4,6 +4,7 @@ const initialState = {
     leads: [],
     fetching: false,
     firstTime: true,
+    saved:false,
 };
 
 export const leads_reducer = (state = initialState, action) => {
@@ -13,7 +14,7 @@ export const leads_reducer = (state = initialState, action) => {
         case GET_LEADS:
             return {...state, leads: action.payload, fetching: false};
         case ADD_LEAD:
-            return {...state, notes: action.payload};
+            return {...state, leads: action.payload, saved:action.saved};
         case UPDATE_LEAD:
             return {...state, notes: action.payload};
         case ERROR_GETTING_LEADS:

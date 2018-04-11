@@ -1,12 +1,15 @@
 const LeadModel = require('../models/leadModel');
-const path = require('path');
 
 const createLead = (req, res) => {
-    const note = new LeadModel(req.body);
-    note.save()
+    const lead = new LeadModel(req.body);
+    lead.save(function (err) {
+        console.log('this is the error', err)
+    })
         .then(newLead => res.status(201).send(newLead))
-        .catch(err => {
-            res.status(500).send({error: "Something went wrong saving your lead information", info: err});
+        .catch(error => {
+
+            console.log('this is the error', error);
+            res.status(404).send({error});
         });
 };
 
@@ -14,8 +17,6 @@ const getLeads = (req, res) => {
     LeadModel.find({})
         .populate()
         .exec((err, resp) => {
-
-            res.sendFile(path.join('/var/www/html', '/landing/build/index.html'));
             res.status(200).send(resp);
 
         });

@@ -116,19 +116,25 @@ export const signInUser = (user) => {
 
 export const addLead = (lead) => {
     const newLead = axios.post('http://208.68.36.212:3040/api/lead', {
-        name:lead.title,
-        email:lead.description,
-        phone:lead.tags,
-    },{withCredentials: true});
+        name:lead.name,
+        email:lead.email,
+        phone:lead.phone,
+    },{withCredentials: false});
 
     return dispatch => {
         newLead
             .then(({data}) => {
-                dispatch({type: ADD_LEAD, payload: data});
-                window.location = "/";
+
+                setTimeout(function(){
+                    dispatch({type: ADD_LEAD, saved:false});
+                }, 2000);
+
+                dispatch({type: ADD_LEAD, payload: data, saved:true});
             })
-            .catch((error) => {
-                console.log(error.error);
+            .catch((err) => {
+
+                console.log(err);
+
             });
     };
 };
