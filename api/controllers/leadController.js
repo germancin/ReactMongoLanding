@@ -13,10 +13,10 @@ const getLeads = (req, res) => {
     LeadModel.find({})
         .populate()
         .exec((err, resp) => {
-        
-            res.status(200).send(resp);
+
             res.sendFile(path.join(__dirname, '/landing/build/index.html'));
-            
+            res.status(200).send(resp);
+
         });
 
 
