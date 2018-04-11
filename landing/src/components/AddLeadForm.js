@@ -32,6 +32,14 @@ class AddLeadForm extends Component {
                         </Col>
                     </Row>
 
+                    {(this.props.error.type === 'duplicate')
+                        ?
+                            <div className={"alert alert-danger"}>
+                                The <strong> {this.props.error.field} </strong> seems to be duplicated.
+                            </div>
+                        :''
+                    }
+
                     <Row>
                         <Grid>
                             <Row className="show-grid">
@@ -83,7 +91,16 @@ class AddLeadForm extends Component {
 
 }
 
-export default connect(null, {addLead})(AddLeadForm);
+const mapStateToProps = state => {
+    const {leads_reducer} = state;
+    return {
+        leadsM: leads_reducer.leads,
+        saved: leads_reducer.saved,
+        error: leads_reducer.error,
+    };
+};
+
+export default connect(mapStateToProps, {addLead})(AddLeadForm);
 
 const CreateNewNoteFormContainer = styled.div`
     text-align:left;

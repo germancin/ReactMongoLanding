@@ -3,13 +3,19 @@ const LeadModel = require('../models/leadModel');
 const createLead = (req, res) => {
     const lead = new LeadModel(req.body);
 
-    console.log('sdfsdfsf');
     lead.save()
         .then(newLead => {
-            console.log(newLead);
             res.status(200).send(newLead)
         })
-        .catch(error => res.status(500).send({error}));
+        .catch(error => {
+
+            if(error.code === 11000){
+                res.status(400).send({error:error, type:'duplicate' });
+            }else{
+                res.status(400).send({error:error, type:'regular'});
+            }
+
+        });
 };
 
 const getLeads = (req, res) => {

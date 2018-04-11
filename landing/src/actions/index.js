@@ -8,7 +8,10 @@ export const SEARCH = 'SEARCH';
 export const GET_LEADS = 'GET_LEADS';
 export const USER = 'USER';
 export const USER_INFO = 'USER_INFO';
+export const ERROR_SAVING_LEAD = 'ERROR_SAVING_LEAD';
 
+// const uri = 'http://208.68.36.212:3040';
+const uri = 'http://localhost:3040';
 
 export const logOut = () => {
     const resp = axios.get(`http://localhost:3040/api/user/log_out`, {withCredentials: true});
@@ -53,7 +56,7 @@ export const extendTokenLife = () => {
 export const getLeads = () => {
     console.log('response::::::');
 
-    const leads = axios.get('http://208.68.36.212:3040/api/lead');
+    const leads = axios.get(`${uri}/api/lead`);
 
     return dispatch => {
         dispatch({type: FETCHING, fetching: true});
@@ -65,7 +68,6 @@ export const getLeads = () => {
                 // dispatch({type: FETCHING, fetching: false});
             })
             .catch(err => {
-                console.log('err::::::::::',err);
                 dispatch({type: ERROR_GETTING_LEADS, payload: err});
             });
     };
@@ -115,7 +117,7 @@ export const signInUser = (user) => {
 };
 
 export const addLead = (lead) => {
-    const newLead = axios.post('http://208.68.36.212:3040/api/lead', {
+    const newLead = axios.post(`${uri}/api/lead`, {
         name:lead.name,
         email:lead.email,
         phone:lead.phone,
@@ -126,14 +128,31 @@ export const addLead = (lead) => {
             .then(({data}) => {
 
                 setTimeout(function(){
-                    dispatch({type: ADD_LEAD, saved:false});
-                }, 2000);
+                    dispatch({type: ADD_LEAD, payload:[],  saved:false});
+                }, 1500);
 
                 dispatch({type: ADD_LEAD, payload: data, saved:true});
             })
-            .catch((err) => {
+            .catch((error) => {
 
-                console.log('error:::', err);
+                if(error.response.data.type === 'duplicate') {
+                    let field = '';
+                    const errorMsg = error.response.data.error.errmsg;
+
+                    if (errorMsg.includes("email")) {
+                        field = 'email';
+                    }
+                    else if (errorMsg.includes("phone")) {
+                        field = 'phone';
+                    }
+
+                    setTimeout(function(){
+                        dispatch({type: ERROR_SAVING_LEAD, errorType:'', field:''});
+                    }, 1800);
+
+                    dispatch({type: ERROR_SAVING_LEAD, errorType:'duplicate', field:field});
+
+                }
 
             });
     };

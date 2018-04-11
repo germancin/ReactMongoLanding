@@ -5,7 +5,6 @@ const server = express();
 const db = require('./db');
 const leadRoutes = require('./api/routes/leadRoutes');
 const userRoutes = require('./api/routes/userRoutes');
-
 const port = process.env.PORT || 3040;
 
 server.use(helmet());
@@ -21,9 +20,6 @@ server.use(function (req, res, next) {
 });
 
 server.use(cookieParser());
-
-server.use( express.static( `${__dirname}/landing/build` ) );
-
 server.use('/api/lead', leadRoutes);
 server.use('/api/user', userRoutes);
 

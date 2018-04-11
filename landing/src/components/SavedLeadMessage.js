@@ -8,7 +8,8 @@ class SavedLeadMessage extends Component {
             <SavedLeadMessageContainer>
 
                 Thank You <br/>
-                {this.props.leadsM.name}
+                {this.props.leadsM.name} <br/>
+                Enjoy the event!
 
             </SavedLeadMessageContainer>
         )}
