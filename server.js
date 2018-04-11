@@ -6,7 +6,7 @@ const db = require('./db');
 const leadRoutes = require('./api/routes/leadRoutes');
 const userRoutes = require('./api/routes/userRoutes');
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3040;
 
 server.use(helmet());
 server.use(express.json());

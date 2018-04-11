@@ -4,7 +4,7 @@ let appRouter = express.Router();
 const jwt = require('../service/auth');
 
 
-// EndPoint: /api/note/
+// EndPoint: /api/lead/
 
 appRouter.route('/').get(leadController.getLeads);
 

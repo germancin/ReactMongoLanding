@@ -3,19 +3,36 @@ import './App.css';
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import styled from 'styled-components';
 import {connect} from 'react-redux';
+import Leads from './components/Leads';
+
 
 class App extends Component {
     render() {
         return (
             <AppContainer>
-                <div className="App">
-                    <header className="App-header">
-                        <h1 className="App-title">Pigeons</h1>
-                    </header>
-                    <p className="App-intro">
-                        To get started, edit <code>src/App.js</code> and save to reload.
-                    </p>
-                </div>
+                <Router>
+                    <div className="App">
+                        <header className="App-header">
+
+                            <ul className="nav nav-pills">
+                                <li className="disabled">
+                                    <a href="/">
+                                        <h1 className="App-title">Pigeons</h1>
+                                    </a>
+                                </li>
+                                <li className="enabled">
+                                    <a href="/leads"> leads</a>
+                                </li>
+                            </ul>
+
+                        </header>
+                        <div className="App-intro">
+
+                            <Route exact path="/" component={Leads}/>
+                            <Route exact path="/leads" component={Leads}/>
+                        </div>
+                    </div>
+                </Router>
             </AppContainer>
         );
     }

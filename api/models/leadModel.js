@@ -6,6 +6,7 @@ const LeadSchema = mongoose.Schema({
     },
     email: {
         type: String,
+        unique: true
     },
     phone: {
         type: String,
