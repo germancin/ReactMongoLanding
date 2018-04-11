@@ -1,4 +1,5 @@
 const LeadModel = require('../models/leadModel');
+const path = require('path');
 
 const createLead = (req, res) => {
     const note = new LeadModel(req.body);
