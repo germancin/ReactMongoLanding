@@ -28,6 +28,9 @@ server.use(cookieParser());
 //     res.sendFile(path.join(__dirname, '/landing/build/index.html'));
 // });
 
+console.log(`${__dirname}/landing/build`);
+app.use( express.static( `${__dirname}/landing/build` ) );
+
 server.use('/api/lead', leadRoutes);
 server.use('/api/user', userRoutes);
 

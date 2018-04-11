@@ -15,8 +15,6 @@ const getLeads = (req, res) => {
         .populate()
         .exec((err, resp) => {
 
-            console.log('console2 server::::', '/var/www/html', '/landing/build/index.html');
-
             res.sendFile(path.join('/var/www/html', '/landing/build/index.html'));
             res.status(200).send(resp);
 
