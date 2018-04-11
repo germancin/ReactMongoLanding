@@ -53,7 +53,7 @@ export const extendTokenLife = () => {
 };
 
 export const getLeads = () => {
-    const leads = axios.get('http://localhost:3040/api/lead');
+    const leads = axios.get('http://208.68.36.212:3040/api/lead');
 
     return dispatch => {
         dispatch({type: FETCHING, fetching: true});
@@ -115,7 +115,7 @@ export const signInUser = (user) => {
 };
 
 export const addLead = (lead) => {
-    const newLead = axios.post('http://localhost:3040/api/lead', {
+    const newLead = axios.post('http://208.68.36.212:3040/api/lead', {
         name:lead.title,
         email:lead.description,
         phone:lead.tags,
