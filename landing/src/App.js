@@ -17,11 +17,15 @@ class App extends Component {
                             <ul className="nav nav-pills">
                                 <li className="disabled">
                                     <a href="/">
-                                        <h1 className="App-title">Pigeons</h1>
+                                        <Link to={'/'}>
+                                            <h1 className="App-title">Pigeons</h1>
+                                        </Link>
                                     </a>
                                 </li>
                                 <li className="enabled">
-                                    <a href="/leads"> leads</a>
+                                    <Link to={'/leads'}>
+                                        Leads
+                                    </Link>
                                 </li>
                             </ul>
 
@@ -29,7 +33,7 @@ class App extends Component {
                         <div className="App-intro">
 
                             <Route exact path="/" component={Leads}/>
-                            <Route exact path="/leads" component={Leads}/>
+                            <Route path="/leads" component={Leads}/>
                         </div>
                     </div>
                 </Router>
