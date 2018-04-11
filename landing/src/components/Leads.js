@@ -1,30 +1,44 @@
 import React, {Component} from 'react';
 import {Row, Grid} from 'react-bootstrap';
-import {getLeads} from '../actions'
+import {getLeads, addLead} from '../actions';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
-import Loading from './Loading'
 import {BrowserRouter as Router, Link} from "react-router-dom";
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 
+
+
+// import '../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
 class Leads extends Component {
     state={
         leads: this.props,
     };
 
-    componentDidMount(){
-
+    componentDidMount() {
         this.props.getLeads();
+    }
 
+    componentWillMount() {
+        console.log('this.props.leadsM:::', this.props.leadsM)
     }
 
     goNoteDetails = (note) => {
         this.props.getSingleNote(note);
     };
 
+    handleBeforeSaveCell() {
+
+        this.props.addLead(this.state);
+
+    }
+
     render() {
         return (
             <LeadsContainer>
+
+
+
                 <Grid>
                     <Row className="show-grid">
                         <h3 className={'top-title'}>Leads</h3>
@@ -34,25 +48,23 @@ class Leads extends Component {
                             ?
                                 <Row className={'notes-box'}>
 
-                                    {this.props.leadsM.map((lead, index) => {
-                                        return (
-                                            <Link to={`/details/${lead.key}`}
-                                                  key={index} md={4} className={'note-container'}
-                                                  onClick={() => {this.goNoteDetails(lead)}}
-                                            >
-                                                <div className={"note-title"}>
-                                                    {lead.name}
-                                                </div>
-                                                <div className={"note-description"}>
-                                                    {lead.email}
-                                                </div>
-                                                <div className={"note-description"}>
-                                                    {lead.phone}
-                                                </div>
 
-                                            </Link>
-                                        );
-                                    })}
+                                    <BootstrapTable data={this.props.leadsM}
+                                                    multiColumnSearch={ true }
+                                                    search={ true }
+                                                    exportCSV={ true }
+                                                    deleteRow={ true }
+                                                    selectRow={ {mode:'checkbox'} }
+                                                    cellEdit={ {mode:'click',
+                                                                blurToSave:true,
+                                                                beforeSaveCell: () =>{this.handleBeforeSaveCell()},} }
+                                                    striped hover
+                                    >
+                                        <TableHeaderColumn isKey dataField='name'>Name</TableHeaderColumn>
+                                        <TableHeaderColumn dataField='email'>Email</TableHeaderColumn>
+                                        <TableHeaderColumn dataField='phone'>Phone</TableHeaderColumn>
+                                    </BootstrapTable>
+
                                 </Row>
                             :
                                 <div className={"no-notes"}>
@@ -74,7 +86,7 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, {getLeads})(Leads);
+export default connect(mapStateToProps, {getLeads, addLead})(Leads);
 
 
 const LeadsContainer = styled.div`
