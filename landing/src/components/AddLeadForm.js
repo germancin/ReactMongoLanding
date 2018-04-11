@@ -79,9 +79,9 @@ class AddLeadForm extends Component {
                                                 <FormControl
                                                     type="button"
                                                     className={"btn btn-primary btn-text btn-side"}
-                                                    value="bumite"
-                                                    onTouchStart={() => {this.addLead()}}
+                                                    value="Register"
                                                     onClick={() => {this.addLead()}}
+                                                    onTouchStart={this.addLead}
 
                                                 />
 
