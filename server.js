@@ -23,13 +23,15 @@ server.use(function (req, res, next) {
 server.use(cookieParser());
 
 
-// server.get('*', (req, res)=>{
-//     console.log('bingo:::');
-//     res.sendFile(path.join(__dirname, '/landing/build/index.html'));
-// });
 
-console.log(`${__dirname}/landing/build`);
+
+
 server.use( express.static( `${__dirname}/landing/build` ) );
+
+server.get('*', (req, res)=>{
+    console.log('bingo:::');
+    res.sendFile(path.join(__dirname, '/landing/build/index.html'));
+});
 
 server.use('/api/lead', leadRoutes);
 server.use('/api/user', userRoutes);
