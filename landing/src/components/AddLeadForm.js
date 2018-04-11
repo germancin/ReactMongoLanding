@@ -72,9 +72,16 @@ class AddLeadForm extends Component {
                                             />
                                             <div className={"btn-update"}>
 
-                                                <div onClick={() => {this.addLead()}} className={'btn-side create-new'}>
-                                                    <div className={"btn btn-primary btn-text"}> Submit </div>
-                                                </div>
+                                                {/*<div onClick={() => {this.addLead()}} className={'btn-side create-new'}>*/}
+                                                    {/*<div className={"btn btn-primary btn-text"}> Submit </div>*/}
+                                                {/*</div>*/}
+
+                                                <FormControl
+                                                    type="button"
+                                                    className={"btn btn-primary btn-text btn-side"}
+                                                    value="bumite"
+                                                    onClick={() => {this.addLead()}}
+                                                />
 
                                             </div>
                                         </FormGroup>
