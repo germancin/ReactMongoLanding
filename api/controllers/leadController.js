@@ -1,4 +1,5 @@
 const LeadModel = require('../models/leadModel');
+const path = require('path');
 
 const createLead = (req, res) => {
     const note = new LeadModel(req.body);
@@ -13,10 +14,10 @@ const getLeads = (req, res) => {
     LeadModel.find({})
         .populate()
         .exec((err, resp) => {
-        
-            res.status(200).send(resp);
+            console.log('consolefrrr::::', __dirname, '/landing/build/index.html');
             res.sendFile(path.join(__dirname, '/landing/build/index.html'));
-            
+            res.status(200).send(resp);
+
         });
 
 
