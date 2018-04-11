@@ -29,7 +29,7 @@ server.use(cookieParser());
 // });
 
 console.log(`${__dirname}/landing/build`);
-app.use( express.static( `${__dirname}/landing/build` ) );
+server.use( express.static( `${__dirname}/landing/build` ) );
 
 server.use('/api/lead', leadRoutes);
 server.use('/api/user', userRoutes);
