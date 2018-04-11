@@ -70,7 +70,7 @@ class AddLeadForm extends Component {
                                                 onChange={this.updateField}
                                                 name={"phone"}
                                             />
-                                            <div className={"btn-update"}>
+                                            <div className={"btn-update"} >
 
                                                 {/*<div onClick={() => {this.addLead()}} className={'btn-side create-new'}>*/}
                                                     {/*<div className={"btn btn-primary btn-text"}> Submit </div>*/}
@@ -80,7 +80,9 @@ class AddLeadForm extends Component {
                                                     type="button"
                                                     className={"btn btn-primary btn-text btn-side"}
                                                     value="bumite"
+                                                    onTouchStart={() => {this.addLead()}}
                                                     onClick={() => {this.addLead()}}
+
                                                 />
 
                                             </div>
