@@ -5,7 +5,6 @@ const server = express();
 const db = require('./db');
 const leadRoutes = require('./api/routes/leadRoutes');
 const userRoutes = require('./api/routes/userRoutes');
-const path = require('path');
 
 const port = process.env.PORT || 3040;
 

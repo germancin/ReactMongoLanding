@@ -1,5 +1,4 @@
 import axios from 'axios';
-const faker = require('faker');
 
 export const ADD_LEAD = 'ADD_LEAD';
 export const FETCHING = 'FETCHING';
@@ -9,7 +8,6 @@ export const SEARCH = 'SEARCH';
 export const GET_LEADS = 'GET_LEADS';
 export const USER = 'USER';
 export const USER_INFO = 'USER_INFO';
-
 
 
 export const logOut = () => {
@@ -53,19 +51,21 @@ export const extendTokenLife = () => {
 };
 
 export const getLeads = () => {
+    console.log('response::::::');
+
     const leads = axios.get('http://208.68.36.212:3040/api/lead');
 
     return dispatch => {
         dispatch({type: FETCHING, fetching: true});
         leads
             .then(response => {
-                console.log('response:::', response.data);
 
                 // responseData.reverse();
                 dispatch({type: GET_LEADS, payload: response.data, first_time:false});
                 // dispatch({type: FETCHING, fetching: false});
             })
             .catch(err => {
+                console.log('err::::::::::',err);
                 dispatch({type: ERROR_GETTING_LEADS, payload: err});
             });
     };
@@ -133,7 +133,7 @@ export const addLead = (lead) => {
             })
             .catch((err) => {
 
-                console.log(err);
+                console.log('error:::', err);
 
             });
     };

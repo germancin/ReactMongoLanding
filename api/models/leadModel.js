@@ -7,12 +7,12 @@ const LeadSchema = new Schema({
     },
     email: {
         type: String,
-        required: [true, 'Please provide your email.'],
-        unique: [true, 'Email already in DB.'],
+        required: true,
+        unique: true,
     },
     phone: {
         type: String,
-        unique: [true, 'Phone already in DB.'],
+        unique: true,
     },
 });
 

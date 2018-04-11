@@ -2,15 +2,14 @@ const LeadModel = require('../models/leadModel');
 
 const createLead = (req, res) => {
     const lead = new LeadModel(req.body);
-    lead.save(function (err) {
-        console.log('this is the error', err)
-    })
-        .then(newLead => res.status(201).send(newLead))
-        .catch(error => {
 
-            console.log('this is the error', error);
-            res.status(404).send({error});
-        });
+    console.log('sdfsdfsf');
+    lead.save()
+        .then(newLead => {
+            console.log(newLead);
+            res.status(200).send(newLead)
+        })
+        .catch(error => res.status(500).send({error}));
 };
 
 const getLeads = (req, res) => {
@@ -18,10 +17,7 @@ const getLeads = (req, res) => {
         .populate()
         .exec((err, resp) => {
             res.status(200).send(resp);
-
         });
-
-
 };
 
 module.exports = {createLead, getLeads};
