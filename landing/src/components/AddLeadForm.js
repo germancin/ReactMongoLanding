@@ -92,12 +92,11 @@ class AddLeadForm extends Component {
                                                 />
                                             </div>
                                         </FormGroup>
-                                    </form>
+                                    </form> <br/><br/>
                                 </Col>
                             </Row>
                         </Grid>
                     </Row>
-
                 </Grid>
             </CreateNewLeadFormContainer>
 
