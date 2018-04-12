@@ -3,6 +3,8 @@ import {FormGroup, FormControl, Row, Col, Grid, Button} from 'react-bootstrap';
 import styled from 'styled-components';
 import {addLead} from '../actions'
 import {connect} from 'react-redux';
+import {isBrowser, isMobile} from 'react-device-detect';
+
 
 class AddLeadForm extends Component {
 
@@ -15,7 +17,13 @@ class AddLeadForm extends Component {
     componentDidMount() {
 
         const el = document.querySelector(".register-btn");
-        el.addEventListener("touchstart", this.addLead, false);
+        if(isMobile){
+            el.addEventListener(['touchstart'], this.addLead, false);
+        } else{
+            el.addEventListener(['click'], this.addLead, false);
+
+        }
+
 
     }
 
@@ -26,8 +34,10 @@ class AddLeadForm extends Component {
     };
 
     addLead = () => {
-        alert('german');
+
+        alert('desde el frente');
         this.props.addLead(this.state);
+
     };
 
     render() {

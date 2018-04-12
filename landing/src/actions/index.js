@@ -116,6 +116,9 @@ export const signInUser = (user) => {
 };
 
 export const addLead = (lead) => {
+
+    alert('desde atras casi lego a AXIOS');
+    
     const newLead = axios.post(`${uri}/api/lead`, {
         name:lead.name,
         email:lead.email,
