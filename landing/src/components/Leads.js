@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import {connect} from 'react-redux';
 import {BrowserRouter as Router, Link} from "react-router-dom";
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import Loading from './Loading';
 
 class Leads extends Component {
     state={
@@ -68,6 +69,8 @@ class Leads extends Component {
                         </Col>
                     </Row>
 
+                    {(this.props.fetching)? <Loading/> : ''}
+
                     {(this.props.leadsM.length > 0)
                             ?
                                 <Row className={'notes-box'}>
@@ -112,7 +115,7 @@ const mapStateToProps = state => {
     const {leads_reducer} = state;
     return {
         leadsM: leads_reducer.leads,
-        // fetching: notes_reducer.fetching,
+        fetching: leads_reducer.fetching,
         // singleNote: notes_reducer.singleNote,
         // firstTime: notes_reducer.firstTime,
     }

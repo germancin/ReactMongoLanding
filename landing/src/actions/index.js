@@ -63,7 +63,12 @@ export const getLeads = () => {
             .then(response => {
 
                 dispatch({type: GET_LEADS, payload: response.data.reverse(), first_time:false});
-                // dispatch({type: FETCHING, fetching: false});
+
+                setTimeout(function(){
+                    dispatch({type: FETCHING, fetching: false});
+                }, 3000);
+
+
             })
             .catch(err => {
                 dispatch({type: ERROR_GETTING_LEADS, payload: err});
