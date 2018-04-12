@@ -16,7 +16,7 @@ class App extends Component {
                         <header className="App-header">
 
                             <Menu isOpen={ false }>
-                                <Link className={'sideLink'} to={'/'}>Home</Link>
+                                <a className={'sideLink'} href='/'>Home</a>
                                 <Link className={'sideLink'} to={'/leads'}>Leads</Link>
                             </Menu>
 
