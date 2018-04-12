@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FormGroup, FormControl, Row, Col, Grid} from 'react-bootstrap';
+import {FormGroup, FormControl, Row, Col, Grid, Button} from 'react-bootstrap';
 import styled from 'styled-components';
 import {addLead} from '../actions'
 import {connect} from 'react-redux';
@@ -11,6 +11,15 @@ class AddLeadForm extends Component {
         email: '',
         phone: '',
     };
+
+    componentDidMount() {
+
+        const el = document.querySelector(".register-btn");
+        el.addEventListener("click", this.addLead, false);
+
+
+        console.log('elelele:::::', el);
+    }
 
     updateField = (e) => {
         this.setState({
@@ -71,15 +80,12 @@ class AddLeadForm extends Component {
                                                 name={"phone"}
                                             />
                                             <div className={"btn-update"}>
-
                                                 <FormControl
                                                     type="button"
-                                                    className={"btn btn-primary btn-text btn-side"}
+                                                    className={"register-btn btn btn-primary btn-text btn-side"}
                                                     value="Register"
-                                                    onTouchStart={() => {this.addLead()}}
-                                                    
+                                                    // onClick={() => {this.addLead()}}
                                                 />
-
                                             </div>
                                         </FormGroup>
                                     </form>
