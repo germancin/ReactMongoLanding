@@ -71,30 +71,32 @@ class Leads extends Component {
                     {(this.props.leadsM.length > 0)
                             ?
                                 <Row className={'notes-box'}>
-
-                                    <BootstrapTable data={this.props.leadsM}
-                                                    multiColumnSearch={ true }
-                                                    search={ true }
-                                                    exportCSV={ true }
-                                                    deleteRow={ true }
-                                                    selectRow={ {mode:'checkbox', bgColor:'lightgrey'} }
-                                                    pagination={ true }
-                                                    options={ options }
-                                                    cellEdit={
-                                                                {
-                                                                    mode:'click',
-                                                                    blurToSave:true,
-                                                                    beforeSaveCell:this.handleBeforeSaveCell
-                                                                }
-                                                              }
-                                                    striped hover
-                                    >
-                                        <TableHeaderColumn isKey hidden dataField='_id'>Id</TableHeaderColumn>
-                                        <TableHeaderColumn dataField='name'>Name</TableHeaderColumn>
-                                        <TableHeaderColumn dataField='email'>Email</TableHeaderColumn>
-                                        <TableHeaderColumn dataField='phone'>Phone</TableHeaderColumn>
-                                    </BootstrapTable>
-
+                                    <Grid>
+                                        <Row className="show-grid">
+                                            <BootstrapTable data={this.props.leadsM}
+                                                                             multiColumnSearch={ true }
+                                                                             search={ true }
+                                                                             exportCSV={ true }
+                                                                             deleteRow={ true }
+                                                                             selectRow={ {mode:'checkbox', bgColor:'lightgrey'} }
+                                                                             pagination={ true }
+                                                                             options={ options }
+                                                                             cellEdit={
+                                                                                 {
+                                                                                     mode:'click',
+                                                                                     blurToSave:true,
+                                                                                     beforeSaveCell:this.handleBeforeSaveCell
+                                                                                 }
+                                                                             }
+                                                                             striped hover
+                                            >
+                                                <TableHeaderColumn isKey hidden dataField='_id'>Id</TableHeaderColumn>
+                                                <TableHeaderColumn dataField='name'>Name</TableHeaderColumn>
+                                                <TableHeaderColumn dataField='email'>Email</TableHeaderColumn>
+                                                <TableHeaderColumn dataField='phone'>Phone</TableHeaderColumn>
+                                            </BootstrapTable>
+                                        </Row>
+                                    </Grid>
                                 </Row>
                             :
                                 <div className={"no-notes"}>
