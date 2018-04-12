@@ -64,7 +64,7 @@ class Leads extends Component {
                 <Grid>
                     <Row className={"form-title"}>
                         <Col md={12}>
-                            <h3 className={'top-title'}>Leads</h3>
+                            {/*<h3 className={'top-title'}>Leads</h3>*/}
                         </Col>
                     </Row>
 
