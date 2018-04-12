@@ -70,19 +70,14 @@ class AddLeadForm extends Component {
                                                 onChange={this.updateField}
                                                 name={"phone"}
                                             />
-                                            <div className={"btn-update"} >
-
-                                                {/*<div onClick={() => {this.addLead()}} className={'btn-side create-new'}>*/}
-                                                    {/*<div className={"btn btn-primary btn-text"}> Submit </div>*/}
-                                                {/*</div>*/}
+                                            <div className={"btn-update"}>
 
                                                 <FormControl
                                                     type="button"
                                                     className={"btn btn-primary btn-text btn-side"}
                                                     value="Register"
-                                                    onClick={() => {this.addLead()}}
-                                                    onTouchStart={this.addLead}
-
+                                                    onTouchStart={() => {this.addLead()}}
+                                                    
                                                 />
 
                                             </div>
