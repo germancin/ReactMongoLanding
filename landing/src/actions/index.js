@@ -118,7 +118,6 @@ export const signInUser = (user) => {
 };
 
 export const addLead = (lead) => {
-
     const newLead = axios.post(`${uri}/api/lead`, {
         name:lead.name,
         email:lead.email,
@@ -160,21 +159,19 @@ export const addLead = (lead) => {
     };
 };
 
-export const deleteLead = (leadkey) => {
-    const key = leadkey;
+export const deleteLeads = (leadId) => {
+    
+    const leadDelete = axios.post(`${uri}/api/lead/delete`, leadId);
 
-    console.log('ready to delete key ', leadkey);
-    const newNotes = axios.delete(`http://localhost:3040/api/note/${key}`, {
-        key: key,
-    });
     return dispatch => {
-        newNotes
-            .then(() => {
-                window.location = "/";
+        leadDelete
+            .then(({data}) => {
+                // dispatch({type: UPDATE_LEAD, payload: data});
             })
             .catch(err => {
                 dispatch({type: ERROR_GETTING_LEADS, payload: err});
             });
+
     };
 };
 

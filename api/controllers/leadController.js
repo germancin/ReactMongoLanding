@@ -26,8 +26,8 @@ const getLeads = (req, res) => {
         });
 };
 
-const updateLead = (req, res) => {
-    const {_id, name, email, phone} = req.body;
+const updateLeads = (req, res) => {
+    const {_id} = req.body;
 
     console.log('this is the req.body:::',req.body );
 
@@ -38,4 +38,23 @@ const updateLead = (req, res) => {
         });
 };
 
-module.exports = {createLead, getLeads, updateLead};
+const deleteLeads = (req, res) => {
+
+
+    const ids = req.body;
+    console.log('this is the req.body:::', ids);
+
+
+    if (ids.length > 0) {
+
+        LeadModel.remove({'_id': { $in: ids } })
+            .populate()
+            .exec((err, resp) => {
+                res.status(200).send(resp);
+            });
+    }
+
+
+};
+
+module.exports = {createLead, getLeads, updateLeads, deleteLeads};

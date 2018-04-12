@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Row, Grid} from 'react-bootstrap';
-import {getLeads, addLead, updateLead} from '../actions';
+import {getLeads, addLead, updateLead, deleteLeads} from '../actions';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
 import {BrowserRouter as Router, Link} from "react-router-dom";
@@ -15,14 +15,13 @@ class Leads extends Component {
         this.props.getLeads();
     }
 
-    goNoteDetails = (note) => {
-        this.props.getSingleNote(note);
+    handleBeforeSaveCell = (rowObj) => {
+        this.props.updateLead(rowObj);
     };
 
-    handleBeforeSaveCell = (rowObj) => {
-
-        this.props.updateLead(rowObj);
-
+    handleOnDeleteRow = (leadId) => {
+        console.log('onDeleteRow:::', leadId);
+        this.props.deleteLeads(leadId);
     };
 
     render() {
@@ -45,12 +44,12 @@ class Leads extends Component {
                                                     exportCSV={ true }
                                                     deleteRow={ true }
                                                     selectRow={ {mode:'checkbox'} }
+                                                    options={ {onDeleteRow:this.handleOnDeleteRow} }
                                                     cellEdit={
                                                                 {
                                                                     mode:'click',
                                                                     blurToSave:true,
-                                                                    beforeSaveCell: this.handleBeforeSaveCell
-
+                                                                    beforeSaveCell:this.handleBeforeSaveCell
                                                                 }
                                                               }
                                                     striped hover
@@ -82,7 +81,7 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, {getLeads, addLead, updateLead})(Leads);
+export default connect(mapStateToProps, {getLeads, addLead, updateLead, deleteLeads})(Leads);
 
 
 const LeadsContainer = styled.div`

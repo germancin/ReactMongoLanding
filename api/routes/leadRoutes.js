@@ -11,6 +11,8 @@ appRouter.route('/').get(leadController.getLeads);
 // appRouter.route('/').post(jwt.validateToken, leadController.createNote);
 appRouter.route('/').post(leadController.createLead);
 
-appRouter.route('/').put(leadController.updateLead);
+appRouter.route('/').put(leadController.updateLeads);
+
+appRouter.route('/delete').post(leadController.deleteLeads);
 
 module.exports = appRouter;
