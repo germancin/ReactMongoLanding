@@ -10,8 +10,8 @@ export const USER = 'USER';
 export const USER_INFO = 'USER_INFO';
 export const ERROR_SAVING_LEAD = 'ERROR_SAVING_LEAD';
 
-// const uri = 'http://208.68.36.212:3040';
-const uri = 'http://localhost:3040';
+const uri = 'http://208.68.36.212:3040';
+// const uri = 'http://localhost:3040';
 
 export const logOut = () => {
     const resp = axios.get(`http://localhost:3040/api/user/log_out`, {withCredentials: true});
