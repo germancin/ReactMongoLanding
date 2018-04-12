@@ -57,13 +57,10 @@ export const getLeads = () => {
 
     const leads = axios.get(`${uri}/api/lead`);
 
-    console.log('leads from get ledas::', leads);
     return dispatch => {
         dispatch({type: FETCHING, fetching: true});
         leads
             .then(response => {
-
-                console.log('ALL LEADS::::', response.data);
 
                 dispatch({type: GET_LEADS, payload: response.data.reverse(), first_time:false});
                 // dispatch({type: FETCHING, fetching: false});

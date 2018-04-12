@@ -28,9 +28,6 @@ const getLeads = (req, res) => {
 
 const updateLeads = (req, res) => {
     const {_id} = req.body;
-
-    console.log('this is the req.body:::',req.body );
-
     LeadModel.update({'_id':_id}, req.body)
         .populate()
         .exec((err, resp) => {
@@ -39,14 +36,9 @@ const updateLeads = (req, res) => {
 };
 
 const deleteLeads = (req, res) => {
-
-
     const ids = req.body;
-    console.log('this is the req.body:::', ids);
-
 
     if (ids.length > 0) {
-
         LeadModel.remove({'_id': { $in: ids } })
             .populate()
             .exec((err, resp) => {

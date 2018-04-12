@@ -7,6 +7,30 @@ const leadRoutes = require('./api/routes/leadRoutes');
 const userRoutes = require('./api/routes/userRoutes');
 const port = process.env.PORT || 3040;
 
+// const faker = require('faker');
+// const LeadModel = require('./api/models/leadModel');
+
+// faker.seed(2000);
+//
+// for(let i = 0; i < 10000; ++i) {
+//
+//     const data ={
+//         'name':  faker.name.firstName() + ' ' + faker.name.lastName(),
+//         'email': faker.internet.email(),
+//         'phone': faker.phone.phoneNumberFormat(),
+//     };
+//
+//     const lead = new LeadModel(data);
+//     lead.save()
+//         .then(newLead => {
+//             console.log(i);
+//         })
+//         .catch(error => {
+//
+//         });
+//
+// }
+
 server.use(helmet());
 server.use(express.json());
 
