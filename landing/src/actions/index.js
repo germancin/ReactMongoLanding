@@ -10,8 +10,8 @@ export const USER = 'USER';
 export const USER_INFO = 'USER_INFO';
 export const ERROR_SAVING_LEAD = 'ERROR_SAVING_LEAD';
 
-const uri = 'http://208.68.36.212:3040';
-// const uri = 'http://localhost:3040';
+// const uri = 'http://208.68.36.212:3040';
+const uri = 'http://localhost:3040';
 
 export const logOut = () => {
     const resp = axios.get(`http://localhost:3040/api/user/log_out`, {withCredentials: true});
@@ -54,15 +54,15 @@ export const extendTokenLife = () => {
 };
 
 export const getLeads = () => {
-    console.log('response::::::');
 
     const leads = axios.get(`${uri}/api/lead`);
+
+    alert(leads);
 
     return dispatch => {
         dispatch({type: FETCHING, fetching: true});
         leads
             .then(response => {
-
                 dispatch({type: GET_LEADS, payload: response.data.reverse(), first_time:false});
                 // dispatch({type: FETCHING, fetching: false});
             })
@@ -116,8 +116,6 @@ export const signInUser = (user) => {
 };
 
 export const addLead = (lead) => {
-
-    alert('desde atras casi lego a AXIOS');
 
     const newLead = axios.post(`${uri}/api/lead`, {
         name:lead.name,
