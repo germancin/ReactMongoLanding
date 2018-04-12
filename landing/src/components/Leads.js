@@ -43,7 +43,7 @@ class Leads extends Component {
             }, {
                 text: 'All', value: this.props.leadsM.length
             } ], // you can change the dropdown list for size per page
-            sizePerPage: 15,  // which size per page you want to locate as default
+            sizePerPage:6,  // which size per page you want to locate as default
             pageStartIndex: 1, // where to start counting the pages
             paginationSize: 5,  // the pagination bar size.
             prePage: 'Prev', // Previous page button text

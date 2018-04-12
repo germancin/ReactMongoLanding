@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import {connect} from 'react-redux';
 import Leads from './components/Leads';
 import Landing from './components/Landing';
-
+import { slide as Menu } from 'react-burger-menu';
 
 class App extends Component {
     render() {
@@ -15,18 +15,12 @@ class App extends Component {
                     <div className="App">
                         <header className="App-header">
 
-                            <ul className="nav nav-pills">
-                                <li className="disabled">
-                                    <Link to={'/'}>
-                                        <h1 className="App-title">Pigeons</h1>
-                                    </Link>
-                                </li>
-                                <li className="enabled">
-                                    <Link to={'/leads'}>
-                                        Leads
-                                    </Link>
-                                </li>
-                            </ul>
+                            <Menu>
+                                <Link className={'sideLink'} to={'/'}>Home</Link>
+                                <Link className={'sideLink'} to={'/leads'}>Leads</Link>
+                            </Menu>
+
+                            <h1 className="App-title">Pigeons</h1>
 
                         </header>
                         <div className="App-intro">
@@ -86,4 +80,59 @@ const AppContainer = styled.div`
             padding-top:60px;
             min-height: 750px;
         }
+        
+        .bm-burger-button {
+            position: fixed;
+            width: 36px;
+            height: 30px;
+            left: 36px;
+            top: 12px;
+        }
+        
+        /* Color/shape of burger icon bars */
+        .bm-burger-bars {
+          background: lightgrey;
+        }
+         
+        /* Position and sizing of clickable cross button */
+        .bm-cross-button {
+          height: 24px;
+          width: 24px;
+        }
+         
+        /* Color/shape of close button cross */
+        .bm-cross {
+          background: #bdc3c7;
+        }
+         
+        /* General sidebar styles */
+        .bm-menu {
+          background: #373a47;
+          padding: 0;
+          padding-top:15px;
+          font-size: 1.15em;
+        }
+         
+        /* Wrapper for item list */
+        .bm-item-list {
+          color: #b8b7ad;
+          padding: 0.8em;
+        }
+         
+        /* Styling of overlay */
+        .bm-overlay {
+          background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .sideLink {
+            padding:10px;
+            margin-top:5px;
+            background: #222222;
+            color:lightgrey;
+        }
+        .sideLink:hover {
+                background: #222235;
+                color:white;
+                text-decoration:none;
+            }
 `;
