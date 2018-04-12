@@ -40,9 +40,9 @@ class AddLeadForm extends Component {
         return (
             <CreateNewLeadFormContainer>
                 <Grid >
-                    <Row className="show-grid">
-                        <Col md={6} className={"col-up"}>
-                            <h3 className={'top-title'}>Welcome</h3>
+                    <Row className="form-title">
+                        <Col md={12}>
+                            <h1 className={'top-title'}>Registration</h1>
                         </Col>
                     </Row>
 
@@ -135,6 +135,12 @@ const CreateNewLeadFormContainer = styled.div`
         width:90%;
         margin:0 auto;
         box-shadow: 0px 0px 5px lightblue;
+    }
+    
+    .form-title {
+        border:0px solid black;
+        text-align:center;
+        padding-top:15px;
     }
 
 `;
