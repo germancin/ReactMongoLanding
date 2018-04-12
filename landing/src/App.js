@@ -16,11 +16,11 @@ class App extends Component {
                         <header className="App-header">
 
                             <Menu isOpen={ false }>
-                                <a className={'sideLink'} href='/'>Home</a>
+                                <Link className={'sideLink'} to={'/'}>Home</Link>
                                 <Link className={'sideLink'} to={'/leads'}>Leads</Link>
                             </Menu>
 
-                            <h1 className="App-title">Pigeons</h1>
+                            {/*<h1 className="App-title">Pigeons</h1>*/}
 
                         </header>
                         <div className="App-intro">
@@ -131,7 +131,7 @@ const AppContainer = styled.div`
             color:lightgrey;
         }
         .sideLink:hover {
-                background: #222235;
+                background: #222211;
                 color:white;
                 text-decoration:none;
             }
