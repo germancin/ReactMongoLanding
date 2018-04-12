@@ -38,8 +38,8 @@ class AddLeadForm extends Component {
 
     render() {
         return (
-            <CreateNewNoteFormContainer>
-                <Grid>
+            <CreateNewLeadFormContainer>
+                <Grid >
                     <Row className="show-grid">
                         <Col md={6} className={"col-up"}>
                             <h3 className={'top-title'}>Welcome</h3>
@@ -58,7 +58,7 @@ class AddLeadForm extends Component {
                         <Grid>
                             <Row className="show-grid">
                                 <Col md={12} className={"col-up"}>
-                                    <form>
+                                    <form className={'form'}>
                                         <FormGroup>
                                             <FormControl
                                                 type="text"
@@ -84,7 +84,7 @@ class AddLeadForm extends Component {
                                                 onChange={this.updateField}
                                                 name={"phone"}
                                             />
-                                            <div className={"btn-update"}>
+                                            <div className={"btn-register"}>
                                                 <FormControl
                                                     type="button"
                                                     className={"register-btn btn btn-primary btn-text btn-side"}
@@ -99,7 +99,7 @@ class AddLeadForm extends Component {
                     </Row>
 
                 </Grid>
-            </CreateNewNoteFormContainer>
+            </CreateNewLeadFormContainer>
 
         )}
 
@@ -116,32 +116,26 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {addLead})(AddLeadForm);
 
-const CreateNewNoteFormContainer = styled.div`
+const CreateNewLeadFormContainer = styled.div`
     text-align:left;
     margin-top:10px;
     
     input{
-        border-radius: 0px;
-        width:55%
+        border-radius: 5px;
+    }
+        
+    .btn-register{
+        text-align:left;
+        margin-top:15px;
     }
     
-    textarea{
-        border-radius: 0px;
-        height:300px;
+    .form {
+        border-radius: 5px;
+        border:1px solid lightgrey;
+        padding:15px;
+        width:55%;
+        margin:0 auto;
+        box-shadow: 0px 0px 5px lightblue;
     }
-
-        .title-form {
-            text-align:center;
-            padding:0px;
-        }
-        
-        .btn-update{
-            text-align:center;
-            margin-top:15px;
-        }
-        
-        .create-new{
-            width:35%
-        }
 
 `;
