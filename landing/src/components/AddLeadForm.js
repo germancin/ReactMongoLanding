@@ -15,15 +15,13 @@ class AddLeadForm extends Component {
     };
 
     componentDidMount() {
-
         const el = document.querySelector(".register-btn");
+
         if(isMobile){
-            el.addEventListener(['touchstart'], this.addLead, false);
+            el.addEventListener('touchstart', this.addLead, false);
         } else{
-            el.addEventListener(['click'], this.addLead, false);
-
+            el.addEventListener('click', this.addLead, false);
         }
-
 
     }
 
@@ -34,8 +32,6 @@ class AddLeadForm extends Component {
     };
 
     addLead = () => {
-
-        alert('desde el frente');
         this.props.addLead(this.state);
 
     };
@@ -93,7 +89,6 @@ class AddLeadForm extends Component {
                                                     type="button"
                                                     className={"register-btn btn btn-primary btn-text btn-side"}
                                                     value="Register"
-                                                    // onClick={() => {this.addLead()}}
                                                 />
                                             </div>
                                         </FormGroup>

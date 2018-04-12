@@ -26,4 +26,16 @@ const getLeads = (req, res) => {
         });
 };
 
-module.exports = {createLead, getLeads};
+const updateLead = (req, res) => {
+    const {_id, name, email, phone} = req.body;
+
+    console.log('this is the req.body:::',req.body );
+
+    LeadModel.update({'_id':_id}, req.body)
+        .populate()
+        .exec((err, resp) => {
+            res.status(200).send(resp);
+        });
+};
+
+module.exports = {createLead, getLeads, updateLead};

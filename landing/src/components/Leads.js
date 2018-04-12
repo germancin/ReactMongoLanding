@@ -1,14 +1,10 @@
 import React, {Component} from 'react';
 import {Row, Grid} from 'react-bootstrap';
-import {getLeads, addLead} from '../actions';
+import {getLeads, addLead, updateLead} from '../actions';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
 import {BrowserRouter as Router, Link} from "react-router-dom";
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-
-
-
-// import '../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
 class Leads extends Component {
     state={
@@ -19,25 +15,19 @@ class Leads extends Component {
         this.props.getLeads();
     }
 
-    componentWillMount() {
-        console.log('this.props.leadsM:::', this.props.leadsM)
-    }
-
     goNoteDetails = (note) => {
         this.props.getSingleNote(note);
     };
 
-    handleBeforeSaveCell() {
+    handleBeforeSaveCell = (rowObj) => {
 
-        this.props.addLead(this.state);
+        this.props.updateLead(rowObj);
 
-    }
+    };
 
     render() {
         return (
             <LeadsContainer>
-
-
 
                 <Grid>
                     <Row className="show-grid">
@@ -55,12 +45,18 @@ class Leads extends Component {
                                                     exportCSV={ true }
                                                     deleteRow={ true }
                                                     selectRow={ {mode:'checkbox'} }
-                                                    cellEdit={ {mode:'click',
-                                                                blurToSave:true,
-                                                                beforeSaveCell: () =>{this.handleBeforeSaveCell()},} }
+                                                    cellEdit={
+                                                                {
+                                                                    mode:'click',
+                                                                    blurToSave:true,
+                                                                    beforeSaveCell: this.handleBeforeSaveCell
+
+                                                                }
+                                                              }
                                                     striped hover
                                     >
-                                        <TableHeaderColumn isKey dataField='name'>Name</TableHeaderColumn>
+                                        <TableHeaderColumn isKey dataField='_id'>Id</TableHeaderColumn>
+                                        <TableHeaderColumn dataField='name'>Name</TableHeaderColumn>
                                         <TableHeaderColumn dataField='email'>Email</TableHeaderColumn>
                                         <TableHeaderColumn dataField='phone'>Phone</TableHeaderColumn>
                                     </BootstrapTable>
@@ -86,7 +82,7 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, {getLeads, addLead})(Leads);
+export default connect(mapStateToProps, {getLeads, addLead, updateLead})(Leads);
 
 
 const LeadsContainer = styled.div`
