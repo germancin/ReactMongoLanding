@@ -133,7 +133,7 @@ const CreateNewLeadFormContainer = styled.div`
         border-radius: 5px;
         border:1px solid lightgrey;
         padding:15px;
-        width:55%;
+        width:90%;
         margin:0 auto;
         box-shadow: 0px 0px 5px lightblue;
     }
