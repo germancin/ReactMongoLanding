@@ -15,10 +15,8 @@ class AddLeadForm extends Component {
     componentDidMount() {
 
         const el = document.querySelector(".register-btn");
-        el.addEventListener("click", this.addLead, false);
+        el.addEventListener("touchstart", this.addLead, false);
 
-
-        console.log('elelele:::::', el);
     }
 
     updateField = (e) => {
@@ -28,6 +26,7 @@ class AddLeadForm extends Component {
     };
 
     addLead = () => {
+        alert('german');
         this.props.addLead(this.state);
     };
 
