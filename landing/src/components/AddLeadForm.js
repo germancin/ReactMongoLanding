@@ -39,7 +39,7 @@ class AddLeadForm extends Component {
     render() {
         return (
             <CreateNewLeadFormContainer>
-                <Grid >
+                <Grid>
                     <Row className="form-title">
                         <Col md={12}>
                             <h1 className={'top-title'}>Registration</h1>

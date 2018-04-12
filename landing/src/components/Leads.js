@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Row, Grid} from 'react-bootstrap';
+import {Row, Grid, Col} from 'react-bootstrap';
 import {getLeads, addLead, updateLead, deleteLeads} from '../actions';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
@@ -63,7 +63,9 @@ class Leads extends Component {
 
                 <Grid>
                     <Row className={"form-title"}>
-                        <h3 className={'top-title'}>Leads</h3>
+                        <Col md={12}>
+                            <h3 className={'top-title'}>Leads</h3>
+                        </Col>
                     </Row>
 
                     {(this.props.leadsM.length > 0)
