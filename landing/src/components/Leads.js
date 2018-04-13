@@ -71,7 +71,7 @@ class Leads extends Component {
 
                     {(this.props.fetching)? <Loading/> : ''}
 
-                    {(this.props.leadsM.length > 0)
+                    {(this.props.leadsM.length > 0 && !this.props.fetching)
                             ?
                                 <Row className={'notes-box'}>
                                     <Grid>
