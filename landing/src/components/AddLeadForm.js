@@ -10,6 +10,7 @@ class AddLeadForm extends Component {
 
     state = {
         name: '',
+        lastname: '',
         email: '',
         phone: '',
     };
@@ -60,22 +61,30 @@ class AddLeadForm extends Component {
                                 <Col md={12} className={"col-up"}>
                                     <form className={'form'}>
                                         <FormGroup>
-                                            <FormControl
-                                                type="text"
-                                                value={this.state.name}
-                                                placeholder="Name"
-                                                onChange={this.updateField}
-                                                name={"name"}
-                                            />
-                                            <br/>
-                                            <FormControl
-                                                // componentClass="textarea"
-                                                type="text"
-                                                value={this.state.email}
-                                                placeholder="Email"
-                                                onChange={this.updateField}
-                                                name={"email"}
-                                            />
+                                            <table className={"table-names"}>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <FormControl
+                                                                type="text"
+                                                                value={this.state.name}
+                                                                placeholder="Name"
+                                                                onChange={this.updateField}
+                                                                name={"name"}
+                                                            />
+                                                        </td>
+                                                        <td>
+                                                            <FormControl
+                                                                type="text"
+                                                                value={this.state.lastname}
+                                                                placeholder="Last Name"
+                                                                onChange={this.updateField}
+                                                                name={"lastname"}
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                             <br/>
                                             <FormControl
                                                 type="text"
@@ -84,6 +93,16 @@ class AddLeadForm extends Component {
                                                 onChange={this.updateField}
                                                 name={"phone"}
                                             />
+                                            <br/>
+                                            <FormControl
+                                                type="text"
+                                                value={this.state.email}
+                                                placeholder="Email"
+                                                onChange={this.updateField}
+                                                name={"email"}
+                                            />
+                                            <br/>
+
                                             <div className={"btn-register"}>
                                                 <FormControl
                                                     type="button"
@@ -121,6 +140,8 @@ const CreateNewLeadFormContainer = styled.div`
     
     input{
         border-radius: 5px;
+        height:60px;
+        font-size:20px;
     }
         
     .btn-register{
@@ -141,6 +162,10 @@ const CreateNewLeadFormContainer = styled.div`
         border:0px solid black;
         text-align:center;
         padding-top:15px;
+    }
+    
+    .table-names{
+        width:100%;
     }
 
 `;

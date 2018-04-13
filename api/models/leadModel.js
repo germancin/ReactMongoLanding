@@ -5,13 +5,16 @@ const LeadSchema = new Schema({
     name: {
         type: String,
     },
+    lastname: {
+        type: String,
+    },
     email: {
         type: String,
-        required: true,
         unique: true,
     },
     phone: {
         type: String,
+        required: true,
         unique: true,
     },
 });

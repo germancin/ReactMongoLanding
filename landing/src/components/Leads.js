@@ -77,24 +77,25 @@ class Leads extends Component {
                                     <Grid>
                                         <Row className="show-grid">
                                             <BootstrapTable data={this.props.leadsM}
-                                                                             multiColumnSearch={ true }
-                                                                             search={ true }
-                                                                             exportCSV={ true }
-                                                                             deleteRow={ true }
-                                                                             selectRow={ {mode:'checkbox', bgColor:'lightgrey'} }
-                                                                             pagination={ true }
-                                                                             options={ options }
-                                                                             cellEdit={
-                                                                                 {
-                                                                                     mode:'click',
-                                                                                     blurToSave:true,
-                                                                                     beforeSaveCell:this.handleBeforeSaveCell
-                                                                                 }
-                                                                             }
-                                                                             striped hover
+                                                 multiColumnSearch={ true }
+                                                 search={ true }
+                                                 exportCSV={ true }
+                                                 deleteRow={ true }
+                                                 selectRow={ {mode:'checkbox', bgColor:'lightgrey'} }
+                                                 pagination={ true }
+                                                 options={ options }
+                                                 cellEdit={
+                                                     {
+                                                         mode:'click',
+                                                         blurToSave:true,
+                                                         beforeSaveCell:this.handleBeforeSaveCell
+                                                     }
+                                                 }
+                                                 striped hover
                                             >
-                                                <TableHeaderColumn isKey hidden dataField='_id'>Id</TableHeaderColumn>
+                                                <TableHeaderColumn isKey hidden export={false} dataField='_id'>Id</TableHeaderColumn>
                                                 <TableHeaderColumn dataField='name'>Name</TableHeaderColumn>
+                                                <TableHeaderColumn dataField='lastname'>Last Name</TableHeaderColumn>
                                                 <TableHeaderColumn dataField='email'>Email</TableHeaderColumn>
                                                 <TableHeaderColumn dataField='phone'>Phone</TableHeaderColumn>
                                             </BootstrapTable>
