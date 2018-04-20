@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import {FormGroup, FormControl, Row, Col, Grid} from 'react-bootstrap';
-import {signInUser} from '../actions';
+import {signInUser, sideBarStatus} from '../actions';
 import {connect} from 'react-redux';
-
 
 class SignIn extends Component {
     state = {
@@ -24,18 +23,11 @@ class SignIn extends Component {
     render() {
         return (
             <SignInContainer>
-                {(this.props.userName !== '')
-                    ?
-                    <div>
-                        {this.props.userName}
-                    </div>
-                    :
-                    ''
-                }
+            {(this.props.userName !== '') ? this.props.history.push('/leads') : ''}
                 <Grid>
-                    <Row className="show-grid">
-                        <Col md={6} className={"col-up"}>
-                            <h3 className={'top-title'}>SignIn:</h3>
+                    <Row className="form-title">
+                        <Col md={12}>
+                            <h1 className={'top-title'}>Sign In</h1>
                         </Col>
                     </Row>
 
@@ -43,31 +35,48 @@ class SignIn extends Component {
                         <Grid>
                             <Row className="show-grid">
                                 <Col md={12} className={"col-up"}>
-                                    <form>
+                                    <form className={'form'}>
                                         <FormGroup>
+                                            <table className={"signin-table"}>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <FormControl
+                                                                type="email"
+                                                                value={this.state.email}
+                                                                placeholder="Email"
+                                                                onChange={this.updateField}
+                                                                name={"email"}
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <FormControl
+                                                                type="password"
+                                                                value={this.state.password}
+                                                                placeholder="Password"
+                                                                onChange={this.updateField}
+                                                                name={"password"}
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <div className={"btn-update"}>
 
-                                            <FormControl
-                                                type="email"
-                                                value={this.state.email}
-                                                placeholder="Email"
-                                                onChange={this.updateField}
-                                                name={"email"}
-                                            />
-                                            <br/>
-                                            <FormControl
-                                                type="password"
-                                                value={this.state.password}
-                                                placeholder="Password"
-                                                onChange={this.updateField}
-                                                name={"password"}
-                                            />
-                                            <div className={"btn-update"}>
+                                                                <FormControl
+                                                                    type="button"
+                                                                    className={"register-btn btn btn-primary btn-text btn-side"}
+                                                                    value="Register"
+                                                                    onClick={this.signInUser()}
+                                                                />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
 
-                                                <div onClick={() => {this.signInUser()}} className={'btn-side create-new'}>
-                                                    <div className={"btn-text"}> SignIn </div>
-                                                </div>
-
-                                            </div>
                                         </FormGroup>
                                     </form>
                                 </Col>
@@ -88,7 +97,7 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, {signInUser})(SignIn);
+export default connect(mapStateToProps, {signInUser, sideBarStatus})(SignIn);
 
 const SignInContainer = styled.div`
     text-align:left;
@@ -96,26 +105,39 @@ const SignInContainer = styled.div`
     
     input{
         border-radius: 0px;
-        width:55%
+        width:100%
     }
     
-    textarea{
-        border-radius: 0px;
-        height:300px;
+    .form {
+        border-radius: 5px;
+        border:1px solid lightgrey;
+        padding:15px;
+        width:60%;
+        margin:0 auto;
+        box-shadow: 0px 0px 5px lightblue;
+        background-color:white;
+    }
+    
+    .signin-table {
+        width:100%;
+    }
+    
+    input {
+        border-radius: 5px;
+        height:60px;
+        font-size:20px;
     }
 
-        .title-form {
-            text-align:center;
-            padding:0px;
-        }
-        
-        .btn-update{
-            text-align:center;
-            margin-top:15px;
-        }
-        
-        .create-new{
-            width:35%
-        }
+    .form-title {
+        border:0px solid black;
+        text-align:center;
+        padding-top:15px;
+    }
+    
+    .btn-update{
+        text-align:left;
+        margin-top:15px;
+    }
+
 
 `;

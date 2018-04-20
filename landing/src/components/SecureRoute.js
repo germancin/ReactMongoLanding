@@ -5,16 +5,13 @@ export default ComposedComponent => {
     class SecureRoute extends Component {
         componentWillMount() {
             if (!sessionStorage.getItem('user')) {
-                this.props.history.push('/sign_in');
+                this.props.history.push('/signin');
             }
         }
 
         render() {
             return (
                 <div>
-
-                    {console.log('this.props:::', this.props)}
-
                     {sessionStorage.getItem('user') ? (
                         <ComposedComponent {...this.props} />
                     ): null}
@@ -23,11 +20,6 @@ export default ComposedComponent => {
         }
     }
 
-    const mapStateToProps = state => {
-        return {
-            authed: state.authed,
-        };
-    };
+    return connect(null)(SecureRoute);
 
-    return connect(mapStateToProps)(SecureRoute);
 };

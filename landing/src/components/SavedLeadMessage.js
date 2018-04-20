@@ -8,7 +8,7 @@ class SavedLeadMessage extends Component {
             <SavedLeadMessageContainer>
 
                 Thank You <br/>
-                {this.props.leadsM.name} <br/>
+                {this.props.singleLead.name} <br/>
                 Enjoy the event!
 
             </SavedLeadMessageContainer>
@@ -18,7 +18,7 @@ class SavedLeadMessage extends Component {
 const mapStateToProps = state => {
     const {leads_reducer} = state;
     return {
-        leadsM: leads_reducer.leads,
+        singleLead: leads_reducer.singleLead,
     };
 };
 

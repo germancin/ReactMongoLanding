@@ -12,10 +12,6 @@ class Leads extends Component {
         leads: this.props,
     };
 
-    componentDidMount() {
-        this.props.getLeads();
-    }
-
     handleBeforeSaveCell = (rowObj) => {
         this.props.updateLead(rowObj);
     };
@@ -42,7 +38,7 @@ class Leads extends Component {
             }, {
                 text: '10', value: 10
             }, {
-                text: 'All', value: this.props.leadsM.length
+                text: 'All', value: (this.props.leadsM)?this.props.leadsM.length:0
             } ], // you can change the dropdown list for size per page
             sizePerPage:6,  // which size per page you want to locate as default
             pageStartIndex: 1, // where to start counting the pages
@@ -63,20 +59,14 @@ class Leads extends Component {
             <LeadsContainer>
 
                 <Grid>
-                    <Row className={"form-title"}>
-                        <Col md={12}>
-                            {/*<h3 className={'top-title'}>Leads</h3>*/}
-                        </Col>
-                    </Row>
-
                     {(this.props.fetching)? <Loading/> : ''}
 
-                    {(this.props.leadsM.length > 0 && !this.props.fetching)
+                    {(this.props.leadsM && this.props.leadsM.length > 0 )
                             ?
                                 <Row className={'notes-box'}>
                                     <Grid>
                                         <Row className="show-grid">
-                                            <BootstrapTable data={this.props.leadsM}
+                                            <BootstrapTable className={''} data={this.props.leadsM}
                                                  multiColumnSearch={ true }
                                                  search={ true }
                                                  exportCSV={ true }
@@ -117,8 +107,6 @@ const mapStateToProps = state => {
     return {
         leadsM: leads_reducer.leads,
         fetching: leads_reducer.fetching,
-        // singleNote: notes_reducer.singleNote,
-        // firstTime: notes_reducer.firstTime,
     }
 };
 
@@ -126,17 +114,13 @@ export default connect(mapStateToProps, {getLeads, addLead, updateLead, deleteLe
 
 
 const LeadsContainer = styled.div`
+    padding-top:15px;
         
     .no-notes {
         text-align:center;
         font-size: 20px;
         margin-top:20px;
     }
-    
-    .form-title {
-        border:0px solid black;
-        text-align:center;
-        padding-top:15px;
-    }
+
         
 `;

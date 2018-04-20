@@ -1,31 +1,37 @@
 import React, {Component} from 'react';
 import './App.css';
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 import styled from 'styled-components';
 import {connect} from 'react-redux';
 import Leads from './components/Leads';
 import Landing from './components/Landing';
+import SignIn from './components/SignIn';
 import { slide as Menu } from 'react-burger-menu';
+import SecureRoute from './components/SecureRoute';
+import {getLeads} from './actions';
 
 class App extends Component {
+
+    componentDidMount() {
+        this.props.getLeads();
+    }
+
     render() {
         return (
             <AppContainer>
                 <Router>
                     <div className="App">
                         <header className="App-header">
-
                             <Menu isOpen={ false }>
-                                <Link className={'sideLink'} to={'/'}>Home</Link>
-                                <Link className={'sideLink'} to={'/leads'}>Leads</Link>
+                                    <Link className={'sideLink'} to={'/'}>Home</Link>
+                                    <Link className={'sideLink'} to={'/leads'}>Leads</Link>
+                                    <Link className={'sideLink'} to={'/signin'}>SignIn</Link>
                             </Menu>
-
-                            {/*<h1 className="App-title">Pigeons</h1>*/}
-
                         </header>
                         <div className="App-intro">
                             <Route exact path="/" component={Landing}/>
-                            <Route path="/leads" component={Leads}/>
+                            <Route path="/signin" component={SignIn}/>
+                            <Route path="/leads"  component={SecureRoute(Leads)}/>
                         </div>
                     </div>
                 </Router>
@@ -40,7 +46,7 @@ const mapStateToProps = state => {
         leadsM: leads_reducer.leads,
     };
 };
-export default connect(mapStateToProps, {})(App);
+export default connect(mapStateToProps, {getLeads})(App);
 
 const AppContainer = styled.div`
 

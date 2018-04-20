@@ -137,14 +137,14 @@ export default connect(mapStateToProps, {addLead})(AddLeadForm);
 const CreateNewLeadFormContainer = styled.div`
     text-align:left;
     margin-top:10px;
-    
-    input{
+
+    input {
         border-radius: 5px;
         height:60px;
         font-size:20px;
     }
         
-    .btn-register{
+    .btn-register {
         text-align:left;
         margin-top:15px;
     }
@@ -156,6 +156,7 @@ const CreateNewLeadFormContainer = styled.div`
         width:60%;
         margin:0 auto;
         box-shadow: 0px 0px 5px lightblue;
+        background-color:white;
     }
     
     .form-title {
@@ -164,7 +165,7 @@ const CreateNewLeadFormContainer = styled.div`
         padding-top:15px;
     }
     
-    .table-names{
+    .table-names {
         width:100%;
     }
 

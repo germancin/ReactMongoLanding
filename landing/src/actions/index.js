@@ -9,9 +9,10 @@ export const GET_LEADS = 'GET_LEADS';
 export const USER = 'USER';
 export const USER_INFO = 'USER_INFO';
 export const ERROR_SAVING_LEAD = 'ERROR_SAVING_LEAD';
+export const SIDE_BAR = 'SIDE_BAR';
 
-const uri = 'http://208.68.36.212:3040';
-// const uri = 'http://localhost:3040';
+// const uri = 'http://208.68.36.212:3040';
+const uri = 'http://localhost:3040';
 
 export const logOut = () => {
     const resp = axios.get(`http://localhost:3040/api/user/log_out`, {withCredentials: true});
@@ -55,7 +56,7 @@ export const extendTokenLife = () => {
 
 export const getLeads = () => {
 
-    const leads = axios.get(`${uri}/api/lead`);
+    const leads = axios.get(`${uri}/api/lead`, {withCredentials: true});
 
     return dispatch => {
         dispatch({type: FETCHING, fetching: true});
@@ -66,8 +67,7 @@ export const getLeads = () => {
 
                 setTimeout(function(){
                     dispatch({type: FETCHING, fetching: false});
-                }, 3000);
-
+                }, 2000);
 
             })
             .catch(err => {
@@ -107,16 +107,22 @@ export const signInUser = (user) => {
 
     return dispatch => {
         userR.then(({data}) => {
-                console.log('data::: ', JSON.stringify(data.user))
+                console.log('data::: ', JSON.stringify(data.user));
                 sessionStorage.setItem('user', JSON.stringify(data.user));
                 dispatch({type: USER_INFO, payload:data, user_name:data.user.name});
-
 
             })
             .catch(err => {
                 dispatch({type: ERROR_GETTING_LEADS, payload: err});
             });
     };
+};
+
+export const sideBarStatus = () => {
+    return dispatch => {
+        dispatch({type: GET_LEADS });
+    };
+
 };
 
 export const addLead = (lead) => {
@@ -133,9 +139,11 @@ export const addLead = (lead) => {
 
                 setTimeout(function(){
                     dispatch({type: ADD_LEAD, payload:[],  saved:false});
+                    window.location = "/";
                 }, 1500);
 
                 dispatch({type: ADD_LEAD, payload: data, saved:true});
+
             })
             .catch((error) => {
 
@@ -164,7 +172,7 @@ export const addLead = (lead) => {
 
 export const deleteLeads = (leadId) => {
     
-    const leadDelete = axios.post(`${uri}/api/lead/delete`, leadId);
+    const leadDelete = axios.post(`${uri}/api/lead/delete`, leadId, {withCredentials: true});
 
     return dispatch => {
         leadDelete
@@ -180,7 +188,7 @@ export const deleteLeads = (leadId) => {
 
 export const updateLead = (leadObj) => {
 
-    const newNotes = axios.put(`${uri}/api/lead`, leadObj);
+    const newNotes = axios.put(`${uri}/api/lead`, leadObj, {withCredentials: true});
 
     return dispatch => {
         newNotes
@@ -213,47 +221,6 @@ export const syncLocalStore = (response) => {
     };
 };
 
-// export const search = (criteria, status) => {
-//
-//     // Handle when user deletes input and gets to 0
-//     if(criteria.length === 0){
-//         return dispatch => {
-//             dispatch({type: SEARCH, payload: [], search:status });
-//         };
-//     }
-//
-//     const searchResponse = axios.post(`http://localhost:3333/notes/search/${criteria}`, {
-//         criteria:criteria,
-//     });
-//
-//     return dispatch => {
-//         dispatch({type: RETRIEVING_SEARCH, retrieving_search:true });
-//         searchResponse
-//             .then(({data: response}) => {
-//
-//                 // Handle when the search found nothing.
-//                 if(response === null){
-//                     dispatch({type: SEARCH, payload: [], search:status });
-//                     dispatch({type: RETRIEVING_SEARCH, retrieving_search:false });
-//                 }else{
-//
-//                     const respKeys = Object.keys(response);
-//                     const responseData = Object.entries(response).map((note, i) => {
-//                         note[1].key = respKeys[i];
-//                         return note[1];
-//                     });
-//
-//                     dispatch({type: SEARCH, payload: responseData, search:status, retrievingSearch:false });
-//                 }
-//
-//             })
-//             .catch(err => {
-//                 // dispatch({type: SEARCH,  search:true });
-//                 dispatch({type: ERROR_GETTING_LEADS, payload: err});
-//             });
-//     };
-//
-// };
 
 
 

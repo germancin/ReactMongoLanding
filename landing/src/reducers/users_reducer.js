@@ -1,10 +1,11 @@
-import {USER, USER_INFO} from '../actions/';
+import {USER, USER_INFO, SIDE_BAR} from '../actions/';
 
 const initialStateT = {
     userName: '',
     user: [],
     token: '',
-    user_info: []
+    user_info: [],
+    sideBarStatus: false,
 };
 
 export const users_reducer = (state = initialStateT, action) => {
@@ -21,6 +22,10 @@ export const users_reducer = (state = initialStateT, action) => {
                         user: action.payload,
                         userName: action.user_name,
                     };
+        case SIDE_BAR:
+            return {...state,
+                sideBarStatus: action.payload,
+            };
         default:
             return state;
     }
