@@ -100,7 +100,7 @@ export const signUpUser = (user) => {
 
 export const signInUser = (user) => {
 
-    const userR = axios.post('http://localhost:3040/api/user/sign_in', {
+    const userR = axios.post(`${uri}/api/user/sign_in`, {
         email:user.email,
         password:user.password,
     }, {withCredentials: true});
