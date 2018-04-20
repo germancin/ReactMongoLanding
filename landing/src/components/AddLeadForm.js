@@ -101,7 +101,6 @@ class AddLeadForm extends Component {
                                                 onChange={this.updateField}
                                                 name={"email"}
                                             />
-                                            <br/>
 
                                             <div className={"btn-register"}>
                                                 <FormControl
@@ -146,7 +145,7 @@ const CreateNewLeadFormContainer = styled.div`
         
     .btn-register {
         text-align:left;
-        margin-top:15px;
+        margin-top:20px;
     }
     
     .form {

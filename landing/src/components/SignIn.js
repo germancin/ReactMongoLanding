@@ -52,6 +52,7 @@ class SignIn extends Component {
                                                     </tr>
                                                     <tr>
                                                         <td>
+                                                            <br/>
                                                             <FormControl
                                                                 type="password"
                                                                 value={this.state.password}
@@ -59,17 +60,18 @@ class SignIn extends Component {
                                                                 onChange={this.updateField}
                                                                 name={"password"}
                                                             />
+
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <div className={"btn-update"}>
+                                                            <div className={"btn-signin"}>
 
                                                                 <FormControl
                                                                     type="button"
                                                                     className={"register-btn btn btn-primary btn-text btn-side"}
-                                                                    value="Register"
-                                                                    onClick={this.signInUser()}
+                                                                    value="Sign In"
+                                                                    onClick={this.signInUser}
                                                                 />
                                                             </div>
                                                         </td>
@@ -103,9 +105,10 @@ const SignInContainer = styled.div`
     text-align:left;
     margin-top:10px;
     
-    input{
-        border-radius: 0px;
-        width:100%
+    input {
+        border-radius: 5px;
+        height:60px;
+        font-size:20px;
     }
     
     .form {
@@ -121,12 +124,6 @@ const SignInContainer = styled.div`
     .signin-table {
         width:100%;
     }
-    
-    input {
-        border-radius: 5px;
-        height:60px;
-        font-size:20px;
-    }
 
     .form-title {
         border:0px solid black;
@@ -134,9 +131,9 @@ const SignInContainer = styled.div`
         padding-top:15px;
     }
     
-    .btn-update{
+    .btn-signin{
         text-align:left;
-        margin-top:15px;
+        margin-top:20px;
     }
 
 
