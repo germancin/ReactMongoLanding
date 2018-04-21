@@ -103,10 +103,11 @@ class Leads extends Component {
 }
 
 const mapStateToProps = state => {
-    const {leads_reducer} = state;
+    const {leads_reducer, users_reducer} = state;
     return {
         leadsM: leads_reducer.leads,
         fetching: leads_reducer.fetching,
+        userAuth: users_reducer.user_auth,
     }
 };
 

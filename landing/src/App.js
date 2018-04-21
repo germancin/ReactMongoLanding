@@ -8,13 +8,23 @@ import Landing from './components/Landing';
 import SignIn from './components/SignIn';
 import { slide as Menu } from 'react-burger-menu';
 import SecureRoute from './components/SecureRoute';
-import {getLeads} from './actions';
+import {getLeads, logOut} from './actions';
 
 class App extends Component {
 
     componentDidMount() {
+        if(this.props.userAuth) {
+            console.log('is login', this.props.userAuth);
+        }else{
+            console.log('is NOT login', this.props.userAuth);
+        }
         this.props.getLeads();
     }
+
+    handleLogOut = () => {
+        this.props.logOut();
+
+    };
 
     render() {
         return (
@@ -25,7 +35,13 @@ class App extends Component {
                             <Menu isOpen={ false }>
                                     <Link className={'sideLink'} to={'/'}>Home</Link>
                                     <Link className={'sideLink'} to={'/leads'}>Leads</Link>
-                                    <Link className={'sideLink'} to={'/signin'}>SignIn</Link>
+                                    {(!this.props.userAuth)
+                                        ?
+                                        <Link className={'sideLink'} to={'/signin'}>SignIn</Link>
+                                        :
+                                        <div className={'sideLink'} onClick={this.handleLogOut} >Logout</div>
+                                    }
+
                             </Menu>
                         </header>
                         <div className="App-intro">
@@ -41,12 +57,13 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-    const {leads_reducer} = state;
+    const {leads_reducer, users_reducer} = state;
     return {
         leadsM: leads_reducer.leads,
+        userAuth: users_reducer.user_auth,
     };
 };
-export default connect(mapStateToProps, {getLeads})(App);
+export default connect(mapStateToProps, {getLeads, logOut})(App);
 
 const AppContainer = styled.div`
 

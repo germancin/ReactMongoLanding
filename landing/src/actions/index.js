@@ -16,16 +16,15 @@ const uri = 'http://208.68.36.212:3040';
 // const uri = 'http://localhost:3040';
 
 export const logOut = () => {
-    const resp = axios.get(`http://localhost:3040/api/user/log_out`, {withCredentials: true});
+    const resp = axios.get(`${uri}/api/user/log_out`, {withCredentials: true});
 
     return dispatch => {
-        resp.then(({data}) => {
-            window.location = "/";
-            // dispatch({});
+        resp.then(() => {
+            sessionStorage.removeItem('user');
+            dispatch({type: USER_AUTH, user_auth:false});
         })
         .catch((err) => {
-            console.log('err',err);
-
+            console.log('err', err);
         });
     };
 };
@@ -127,7 +126,6 @@ export const signInUser = (user) => {
                 sessionStorage.setItem('user', JSON.stringify(data.user));
                 dispatch({type: USER_INFO, payload:data, user_name:data.user.name});
                 dispatch({type: USER_AUTH, payload:data, user_auth:true});
-
             })
             .catch(err => {
                 dispatch({type: USER_AUTH, payload: err.response.data, user_auth:false});
