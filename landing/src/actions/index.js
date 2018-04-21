@@ -11,8 +11,8 @@ export const USER_INFO = 'USER_INFO';
 export const ERROR_SAVING_LEAD = 'ERROR_SAVING_LEAD';
 export const SIDE_BAR = 'SIDE_BAR';
 
-// const uri = 'http://208.68.36.212:3040';
-const uri = 'http://localhost:3040';
+const uri = 'http://208.68.36.212:3040';
+// const uri = 'http://localhost:3040';
 
 export const logOut = () => {
     const resp = axios.get(`http://localhost:3040/api/user/log_out`, {withCredentials: true});
@@ -138,16 +138,15 @@ export const addLead = (lead) => {
             .then(({data}) => {
 
                 setTimeout(function(){
-                    dispatch({type: ADD_LEAD, payload:[],  saved:false});
-                    window.location = "/";
+                    dispatch({type:ADD_LEAD, payload:[], saved:false});
                 }, 1500);
 
-                dispatch({type: ADD_LEAD, payload: data, saved:true});
+                dispatch({type: ADD_LEAD, payload: data, saved:true, registered:true});
 
             })
             .catch((error) => {
 
-                if(error.response.data.type === 'duplicate') {
+                if(error.response && error.response.data.type === 'duplicate') {
                     let field = '';
                     const errorMsg = error.response.data.error.errmsg;
 

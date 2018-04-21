@@ -40,6 +40,7 @@ class AddLeadForm extends Component {
     render() {
         return (
             <CreateNewLeadFormContainer>
+                {(this.props.registered)? this.props.history.push('/') : ''}
                 <Grid>
                     <Row className="form-title">
                         <Col md={12}>
@@ -128,6 +129,7 @@ const mapStateToProps = state => {
         leadsM: leads_reducer.leads,
         saved: leads_reducer.saved,
         error: leads_reducer.error,
+        registered: leads_reducer.registered,
     };
 };
 
