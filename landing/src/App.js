@@ -1,29 +1,27 @@
 import React, {Component} from 'react';
 import './App.css';
-import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import styled from 'styled-components';
 import {connect} from 'react-redux';
 import Leads from './components/Leads';
 import Landing from './components/Landing';
 import SignIn from './components/SignIn';
-import { slide as Menu } from 'react-burger-menu';
+import {slide as Menu} from 'react-burger-menu';
 import SecureRoute from './components/SecureRoute';
 import {getLeads, logOut} from './actions';
 
 class App extends Component {
 
+    state ={
+        usrName:'',
+    };
+
     componentDidMount() {
-        if(this.props.userAuth) {
-            console.log('is login', this.props.userAuth);
-        }else{
-            console.log('is NOT login', this.props.userAuth);
-        }
         this.props.getLeads();
     }
 
     handleLogOut = () => {
         this.props.logOut();
-
     };
 
     render() {
@@ -31,8 +29,12 @@ class App extends Component {
             <AppContainer>
                 <Router>
                     <div className="App">
+                        <div className={'logo'}>
+                            <img src={'img/logo-alta-voz.png'} />
+                        </div>
                         <header className="App-header">
                             <Menu isOpen={ false }>
+
                                     <Link className={'sideLink'} to={'/'}>Home</Link>
                                     <Link className={'sideLink'} to={'/leads'}>Leads</Link>
                                     {(!this.props.userAuth)
@@ -69,6 +71,22 @@ const AppContainer = styled.div`
 
     font-family: verdana;
     font-stretch: condensed;
+    
+    .logo{
+        position:absolute;
+        top: 12px;
+        border:0px solid yellow;
+        // left: 42%;
+        right: 2%;
+        
+            img {
+                border:0px solid blue;
+                width:200px;
+                // -webkit-filter: drop-shadow(3px 3px 1px rgba(255,255,255, 0.9));
+                // filter: drop-shadow(1px 1px 3px rgba(255,255,255, 0));
+                filter: drop-shadow(1px -1px 0 white);
+            }
+    }
         
         .top-bar-container{
             border:0px solid black;
@@ -109,7 +127,7 @@ const AppContainer = styled.div`
             width: 36px;
             height: 30px;
             left: 36px;
-            top: 12px;
+            top: 18px;
         }
         
         /* Color/shape of burger icon bars */
@@ -157,5 +175,10 @@ const AppContainer = styled.div`
                 background: #222211;
                 color:white;
                 text-decoration:none;
-            }
+        }
+        .user {
+            padding:10px;
+            margin-top:5px;
+            color:white;
+        }
 `;

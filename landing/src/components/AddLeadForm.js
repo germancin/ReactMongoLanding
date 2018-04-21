@@ -47,7 +47,8 @@ class AddLeadForm extends Component {
                 <Grid>
                     <Row className="form-title">
                         <Col md={12}>
-                            <h1 className={'top-title'}>Registration</h1>
+                            {/*<h1 className={'top-title'}>Registration</h1>*/}
+                            <img src={'img/latina-logo.jpg'} className={'reg-logo'} />
                         </Col>
                     </Row>
 
@@ -140,7 +141,6 @@ export default connect(mapStateToProps, {addLead, getLeads})(AddLeadForm);
 
 const CreateNewLeadFormContainer = styled.div`
     text-align:left;
-    margin-top:10px;
 
     input {
         border-radius: 5px;
@@ -166,11 +166,17 @@ const CreateNewLeadFormContainer = styled.div`
     .form-title {
         border:0px solid black;
         text-align:center;
-        padding-top:15px;
+        padding-top:0px;
     }
     
     .table-names {
         width:100%;
+    }
+    
+    .reg-logo {
+        width:350px;
+        display:block;
+        margin:auto;
     }
 
 `;

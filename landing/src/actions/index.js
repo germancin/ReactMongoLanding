@@ -122,13 +122,12 @@ export const signInUser = (user) => {
 
     return dispatch => {
         userR.then(({data}) => {
-                console.log('data::: ', JSON.stringify(data.user));
                 sessionStorage.setItem('user', JSON.stringify(data.user));
                 dispatch({type: USER_INFO, payload:data, user_name:data.user.name});
                 dispatch({type: USER_AUTH, payload:data, user_auth:true});
             })
             .catch(err => {
-                dispatch({type: USER_AUTH, payload: err.response.data, user_auth:false});
+                dispatch({type: USER_AUTH, user_auth:false});
             });
     };
 };
