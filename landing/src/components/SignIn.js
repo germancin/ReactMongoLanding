@@ -20,10 +20,15 @@ class SignIn extends Component {
         this.props.signInUser(this.state);
     };
 
+    componentDidUpdate() {
+        if(this.props.userAuth) {
+            this.props.history.push('/leads');
+        }
+    }
+
     render() {
         return (
             <SignInContainer>
-            {(this.props.userName !== '') ? this.props.history.push('/leads') : ''}
                 <Grid>
                     <Row className="form-title">
                         <Col md={12}>
@@ -96,6 +101,7 @@ const mapStateToProps = state => {
     return {
         userName: users_reducer.userName,
         user: users_reducer.user,
+        userAuth: users_reducer.user_auth,
     }
 };
 

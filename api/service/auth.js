@@ -18,7 +18,7 @@ const validateToken =  (req, res, next) => {
     if (!token) {
         res.status(499);
         res.json({message: 'Required Token.'});
-        return
+        return;
     }
 
     jwt.verify(token, secret, (authError, decoded) => {

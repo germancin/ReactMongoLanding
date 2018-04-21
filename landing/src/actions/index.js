@@ -10,6 +10,7 @@ export const USER = 'USER';
 export const USER_INFO = 'USER_INFO';
 export const ERROR_SAVING_LEAD = 'ERROR_SAVING_LEAD';
 export const SIDE_BAR = 'SIDE_BAR';
+export const USER_AUTH = 'USER_AUTH';
 
 const uri = 'http://208.68.36.212:3040';
 // const uri = 'http://localhost:3040';
@@ -35,6 +36,21 @@ export const setUserInfo = (userInfo) => {
     return dispatch => {
         dispatch({type: USER_INFO, payload:userInfo});
     };
+};
+
+export const checkTokenStatus = () => {
+    const resp = axios.get(`${uri}/api/user/validate_token`, {withCredentials: true});
+
+    return dispatch => {
+        resp.then(() => {
+            dispatch({type: USER_AUTH, user_auth:true});
+        })
+        .catch((err) => {
+            dispatch({type: USER_AUTH, user_auth:false});
+            console.log('error.message:',err.response);
+        });
+    };
+
 };
 
 export const extendTokenLife = () => {
@@ -110,10 +126,11 @@ export const signInUser = (user) => {
                 console.log('data::: ', JSON.stringify(data.user));
                 sessionStorage.setItem('user', JSON.stringify(data.user));
                 dispatch({type: USER_INFO, payload:data, user_name:data.user.name});
+                dispatch({type: USER_AUTH, payload:data, user_auth:true});
 
             })
             .catch(err => {
-                dispatch({type: ERROR_GETTING_LEADS, payload: err});
+                dispatch({type: USER_AUTH, payload: err.response.data, user_auth:false});
             });
     };
 };
