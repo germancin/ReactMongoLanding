@@ -32,9 +32,12 @@ class App extends Component {
                         <div className={'logo'}>
                             <img src={'img/logo-alta-voz.png'} />
                         </div>
+
                         <header className="App-header">
                             <Menu isOpen={ false }>
 
+                                    <img  className={'menu-logo'} src={'img/logo-alta-voz.png'} />
+                                <br/>
                                     <Link className={'sideLink'} to={'/'}>Home</Link>
                                     <Link className={'sideLink'} to={'/leads'}>Leads</Link>
                                     {(!this.props.userAuth)
@@ -74,16 +77,14 @@ const AppContainer = styled.div`
     
     .logo{
         position:absolute;
-        top: 12px;
+        top: 14px;
         border:0px solid yellow;
-        // left: 42%;
-        right: 2%;
+        left: 80px;
         
             img {
                 border:0px solid blue;
                 width:200px;
-                // -webkit-filter: drop-shadow(3px 3px 1px rgba(255,255,255, 0.9));
-                // filter: drop-shadow(1px 1px 3px rgba(255,255,255, 0));
+                -webkit-filter: drop-shadow(1px -1px 0 white);
                 filter: drop-shadow(1px -1px 0 white);
             }
     }
@@ -180,5 +181,12 @@ const AppContainer = styled.div`
             padding:10px;
             margin-top:5px;
             color:white;
+        }
+        
+        .menu-logo{
+            border:0px solid blue;
+            width:200px;
+            -webkit-filter: drop-shadow(1px -1px 0 lightgrey);
+            filter: drop-shadow(1px 1px 0 lightgrey);
         }
 `;
