@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {FormGroup, FormControl, Row, Col, Grid, Button} from 'react-bootstrap';
 import styled from 'styled-components';
-import {addLead} from '../actions'
+import {addLead, getLeads} from '../actions'
 import {connect} from 'react-redux';
 import {isBrowser, isMobile} from 'react-device-detect';
 
@@ -24,7 +24,10 @@ class AddLeadForm extends Component {
             el.addEventListener('click', this.addLead, false);
         }
 
+        this.props.getLeads();
     }
+
+
 
     updateField = (e) => {
         this.setState({
@@ -133,7 +136,7 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, {addLead})(AddLeadForm);
+export default connect(mapStateToProps, {addLead, getLeads})(AddLeadForm);
 
 const CreateNewLeadFormContainer = styled.div`
     text-align:left;
