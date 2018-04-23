@@ -6,26 +6,40 @@ const db = require('./db');
 const leadRoutes = require('./api/routes/leadRoutes');
 const userRoutes = require('./api/routes/userRoutes');
 const port = process.env.PORT || 3040;
-
-const faker = require('faker');
 const LeadModel = require('./api/models/leadModel');
 
-// faker.seed(2000);
+const faker = require('faker');
 
-// for(let i = 0; i < 2000; ++i) {
+// faker.seed(88000);
+//
+// for(let i = 0; i < 4500; ++i) {
 //
 //     const data ={
-//         'name':  faker.name.firstName() + ' ' + faker.name.lastName(),
+//         'name': faker.name.firstName(),
+//         'lastname': faker.name.lastName(),
 //         'email': faker.internet.email(),
 //         'phone': faker.phone.phoneNumberFormat(),
 //     };
 //
 //     const lead = new LeadModel(data);
-//     lead.save()
-//         .then(newLead => {
-//             console.log(i);
-//         })
-//         .catch(error => {
+//
+//     LeadModel.find({'email': data.email})
+//         .populate()
+//         .exec((err, resp) => {
+//
+//             if(resp.id === undefined){
+//
+//                 lead.save()
+//                     .then(newLead => {
+//                         console.log(i);
+//                     })
+//                     .catch(error => {
+//
+//                     });
+//
+//             }else {
+//                 console.log('resp:::', resp);
+//             }
 //
 //         });
 //
@@ -38,7 +52,6 @@ server.use(express.json());
 server.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', 'http://208.68.36.212');
     // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-    // res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');

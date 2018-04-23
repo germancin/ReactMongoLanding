@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const config = require('./config');
 mongoose.Promise = global.Promise;
 
 const options = {
@@ -6,12 +7,10 @@ const options = {
 };
 
 module.exports = {
-    // TODO: move this configurations to config.js for security reasons
-    connectTo: function (database = 'db_landing', host = 'germancin:secure123@159.65.170.21') {
+    connectTo: function (database = config.db_name, host = config.host) {
         return mongoose.connect(`mongodb://${host}/${database}`, options)
             .then(conn => console.log(`Connected to MongoDB - Server:159.65.170.21 DB:${database}`))
             .catch(err => {
-                console.log('error ::::' + err);
                 return err;
             });
     },

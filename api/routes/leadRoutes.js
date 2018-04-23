@@ -11,6 +11,6 @@ appRouter.route('/').post(leadController.createLead);
 
 appRouter.route('/').put(jwt.validateToken, leadController.updateLeads);
 
-appRouter.route('/delete').post( leadController.deleteLeads);
+appRouter.route('/delete').post(jwt.validateToken, leadController.deleteLeads);
 
 module.exports = appRouter;
