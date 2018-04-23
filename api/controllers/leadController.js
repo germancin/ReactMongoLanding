@@ -42,10 +42,11 @@ const deleteLeads = (req, res) => {
         LeadModel.remove({'_id': { $in: ids } })
             .populate()
             .exec((err, resp) => {
+                console.log('rresp::::', resp);
+
                 res.status(200).send(resp);
             });
     }
-
 
 };
 

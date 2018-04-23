@@ -33,4 +33,4 @@ UserSchema.methods.checkPassword = function(plainTextPW) {
     return bcrypt.compare(plainTextPW, this.password);
 };
 
-module.exports = mongoose.model('Users', UserSchema);
+module.exports = mongoose.model('users', UserSchema);

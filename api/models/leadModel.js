@@ -19,4 +19,4 @@ const LeadSchema = new Schema({
     },
 });
 
-module.exports = mongoose.model('Leads', LeadSchema);
+module.exports = mongoose.model('leads', LeadSchema);
