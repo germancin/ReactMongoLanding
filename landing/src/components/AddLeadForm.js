@@ -13,6 +13,11 @@ class AddLeadForm extends Component {
         lastname: '',
         email: '',
         phone: '',
+        formErrors: {phone: '', email: ''},
+        emailValid: false,
+        phoneValid: false,
+        formValid: false,
+        deleting: false,
     };
 
     componentDidMount() {
@@ -27,17 +32,69 @@ class AddLeadForm extends Component {
         this.props.getLeads();
     }
 
-
-
     updateField = (e) => {
+        const name = e.target.name;
+        let value = e.target.value;
+        let fieldValidationErrors = this.state.formErrors;
+        let emailValid = this.state.emailValid;
+        let phoneValid = this.state.phoneValid;
+
+        switch(name) {
+            case 'phone':
+                phoneValid = value.match(/^[0-9\-]+$/);
+                fieldValidationErrors.phone = (phoneValid === null) ? ' Invalid format.' : '';
+
+                if(value.length > 12) return false;
+
+                if(phoneValid !== null && value.length <= 12 && !this.state.deleting) {
+
+                    let formattedPhone = value.split('').map((char, i) => {
+
+                                    if(value.length === 3 && i === 2) {
+                                        return char + '-';
+                                    } else if (value.length === 7 && i === 6) {
+                                        return char + '-';
+                                    }
+                                    return char;
+
+                                }).join('');
+
+                    value = formattedPhone;
+                }
+                break;
+            case 'email':
+                console.log('email',value);
+                emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+                fieldValidationErrors.email = emailValid ? '' : ' is invalid';
+                break;
+            default:
+                break;
+        }
+        this.setState({formErrors: fieldValidationErrors,
+                       emailValid: emailValid,
+                       phoneValid: phoneValid
+        }, this.validateForm);
+
         this.setState({
-            [e.target.name]: e.target.value
+            [name]: value
         });
     };
 
+    onKeyDown = (e) => {
+        if (e.keyCode === 8) {
+            this.setState({deleting: true});
+        }else{
+            this.setState({deleting: false});
+        }
+    };
+
+    validateForm() {
+        // this.setState({formValid: this.state.emailValid && this.state.phoneValid});
+        this.setState({formValid: this.state.phoneValid});
+    }
+
     addLead = () => {
         this.props.addLead(this.state);
-
     };
 
     render() {
@@ -91,10 +148,12 @@ class AddLeadForm extends Component {
                                                 </tbody>
                                             </table>
                                             <br/>
+                                            {this.state.formErrors.phone}
                                             <FormControl
                                                 type="text"
                                                 value={this.state.phone}
                                                 placeholder="Phone"
+                                                onKeyDown={this.onKeyDown}
                                                 onChange={this.updateField}
                                                 name={"phone"}
                                             />
@@ -112,6 +171,7 @@ class AddLeadForm extends Component {
                                                     type="button"
                                                     className={"register-btn btn btn-primary btn-text btn-side"}
                                                     value="Register"
+                                                    disabled={!this.state.formValid}
                                                 />
                                             </div>
                                         </FormGroup>

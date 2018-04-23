@@ -8,6 +8,7 @@ class SignIn extends Component {
     state = {
         email: '',
         password: '',
+        
     };
 
     updateField = (e) => {
