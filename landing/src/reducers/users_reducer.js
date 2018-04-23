@@ -7,6 +7,7 @@ const initialStateT = {
     user_info: [],
     sideBarStatus: false,
     user_auth: false,
+    signin_error: '',
 };
 
 export const users_reducer = (state = initialStateT, action) => {
@@ -26,7 +27,7 @@ export const users_reducer = (state = initialStateT, action) => {
         case SIDE_BAR:
             return {...state, sideBarStatus: action.payload};
         case USER_AUTH:
-            return {...state, user_auth: action.user_auth};
+            return {...state, user_auth: action.user_auth, signin_error:action.signin_error};
         default:
             return state;
     }

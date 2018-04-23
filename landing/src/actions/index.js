@@ -127,7 +127,10 @@ export const signInUser = (user) => {
                 dispatch({type: USER_AUTH, payload:data, user_auth:true});
             })
             .catch(err => {
-                dispatch({type: USER_AUTH, user_auth:false});
+                dispatch({type: USER_AUTH, user_auth:false, signin_error:true});
+                setTimeout(function(){
+                    dispatch({type: USER_AUTH, user_auth:false, signin_error:false});
+                }, 3000);
             });
     };
 };

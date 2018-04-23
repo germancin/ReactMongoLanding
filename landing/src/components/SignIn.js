@@ -41,7 +41,18 @@ class SignIn extends Component {
                         <Grid>
                             <Row className="show-grid">
                                 <Col md={12} className={"col-up"}>
+                                    {
+                                        (this.props.signInError)
+                                            ?
+                                            <div className={"alert alert-danger"}>
+                                                <strong> Error! </strong> Check your email and password.
+                                            </div>
+                                            :
+                                            ''
+                                    }
+
                                     <form className={'form'}>
+
                                         <FormGroup>
                                             <table className={"signin-table"}>
                                                 <tbody>
@@ -102,6 +113,7 @@ const mapStateToProps = state => {
         userName: users_reducer.userName,
         user: users_reducer.user,
         userAuth: users_reducer.user_auth,
+        signInError: users_reducer.signin_error,
     }
 };
 
