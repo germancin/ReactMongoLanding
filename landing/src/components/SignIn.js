@@ -90,7 +90,6 @@ class SignIn extends Component {
                             </Row>
                         </Grid>
                     </Row>
-
                 </Grid>
             </SignInContainer>
         )}
@@ -141,6 +140,5 @@ const SignInContainer = styled.div`
         text-align:left;
         margin-top:20px;
     }
-
 
 `;

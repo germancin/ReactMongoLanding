@@ -19,21 +19,20 @@ const createUser = (req, res, next) => {
         });
 };
 
-const logOut = (req, res, next) => {
-    res.clearCookie('access_token');
-    res.status(200).send({"message":"Successfully LogOut"});
-    return next();
-};
-
 const getUsers = (req, res) => {
     UserModel.find({})
         .populate()
         .exec((err, resp) => res.status(200).send(resp));
 };
 
+const logOut = (req, res, next) => {
+    res.clearCookie('access_token');
+    res.status(200).send({"message":"Successfully LogOut"});
+    return next();
+};
+
 const signInUser = (req, res) => {
     const user = new UserModel(req.body);
-
 
     UserModel.findOne({email: user.email})
         .then(usr => {
@@ -43,11 +42,10 @@ const signInUser = (req, res) => {
             }else{
                 usr.checkPassword(user.password)
                     .then(isValid => {
-                        console.log('isValid????::::', isValid, usr);
 
                         if (isValid) {
                             const token = getTokenForUser({ user: usr,
-                                                            access: true }, '10m');
+                                                            access: true }, '4h');
 
                             res.cookie('access_token', token, { maxAge: 604800, httpOnly: true });
                             res.status(200).send({"user":usr, "token":token});

@@ -3,17 +3,12 @@ const { secret } = require('../../config');
 
 const getTokenForUser = (userObject, time) => {
     // creating a JWT and returning it.
-    // this function is more of a simple helper function than middleware,
-    // notice `req, res and next` are missing, this is because the auth is simple here.
-    // no need for custom middleware, just a helper function. :)
     // time Ex. 1m, 1h
     return jwt.sign(userObject, secret, { expiresIn: time });
 };
 
 const validateToken =  (req, res, next) => {
     const token = req.cookies.access_token;
-
-    console.log('access_token:::', req.cookies.access_token);
 
     if (!token) {
         res.status(499);
@@ -28,7 +23,7 @@ const validateToken =  (req, res, next) => {
             return;
         }
 
-        console.log('token decoded:::', decoded);
+        console.log('decoded token', decoded);
         // sets the decoded JWT/user object on the request object for use in next middleware.
         req.decoded = decoded;
         next();
