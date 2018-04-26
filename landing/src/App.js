@@ -35,7 +35,6 @@ class App extends Component {
 
                         <header className="App-header">
                             <Menu isOpen={ false }>
-
                                     <img  className={'menu-logo'} src={'img/logo-alta-voz.png'} />
                                 <br/>
                                     <Link className={'sideLink'} to={'/'}>Home</Link>
