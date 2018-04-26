@@ -50,8 +50,8 @@ server.use(express.json());
 
 // Adding Headers for requests.
 server.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://208.68.36.212');
-    // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    // res.setHeader('Access-Control-Allow-Origin', 'http://208.68.36.212');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
