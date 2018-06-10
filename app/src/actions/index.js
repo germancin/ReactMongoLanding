@@ -166,9 +166,6 @@ export const addLead = (lead) => {
                     let field = '';
                     const errorMsg = error.response.data.error.errmsg;
                     
-
-                    console.log(errorMsg);
-
                     // if (errorMsg.includes("email")) {
                     //     field = 'email';
                     // }
@@ -181,7 +178,7 @@ export const addLead = (lead) => {
                         dispatch({type: ERROR_SAVING_LEAD, errorType:'', field:''});
                     }, 1800);
 
-                    dispatch({type: ERROR_SAVING_LEAD, errorType:'duplicate', field:field});
+                    dispatch({type: ERROR_SAVING_LEAD, errorType:'', field:field});
 
                 }
 
