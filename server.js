@@ -52,7 +52,7 @@ server.use(express.json());
 
 // Adding Headers for requests.
 server.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://192.241.141.101');
+    res.setHeader('Access-Control-Allow-Origin', 'http://gcomlnk.com');
     // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -69,6 +69,4 @@ db.connectTo();
 server.listen(port, () => {
     console.log(`Server listening on ${port}`);
 });
-
-
 

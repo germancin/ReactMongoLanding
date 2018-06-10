@@ -186,7 +186,7 @@ export const addLead = (lead) => {
 };
 
 export const deleteLeads = (leadId) => {
-    const leadDelete = axios.post(`${uri}/api/lead/delete`, leadId, {withCredentials: true});
+    const leadDelete = axios.post(`${uri}/api/lead/delete`, leadId, {withCredentials: false});
 
     return dispatch => {
         leadDelete
@@ -202,7 +202,7 @@ export const deleteLeads = (leadId) => {
 
 export const updateLead = (leadObj) => {
 
-    const newNotes = axios.put(`${uri}/api/lead`, leadObj, {withCredentials: true});
+    const newNotes = axios.put(`${uri}/api/lead`, leadObj, {withCredentials: false});
 
     return dispatch => {
         newNotes
