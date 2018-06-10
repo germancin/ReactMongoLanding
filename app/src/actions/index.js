@@ -165,11 +165,15 @@ export const addLead = (lead) => {
                 if(error.response && error.response.data.type === 'duplicate') {
                     let field = '';
                     const errorMsg = error.response.data.error.errmsg;
+                    
 
-                    if (errorMsg.includes("email")) {
-                        field = 'email';
-                    }
-                    else if (errorMsg.includes("phone")) {
+                    console.log(errorMsg);
+
+                    // if (errorMsg.includes("email")) {
+                    //     field = 'email';
+                    // }
+                    // else 
+                    if (errorMsg.includes("phone")) {
                         field = 'phone';
                     }
 

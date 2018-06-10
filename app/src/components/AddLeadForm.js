@@ -62,11 +62,11 @@ class AddLeadForm extends Component {
                     value = formattedPhone;
                 }
                 break;
-            case 'email':
-                console.log('email',value);
-                emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-                fieldValidationErrors.email = emailValid ? '' : ' is invalid';
-                break;
+            // case 'email':
+            //     console.log('email',value);
+            //     emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+            //     fieldValidationErrors.email = emailValid ? '' : ' is invalid';
+            //     break;
             default:
                 break;
         }
