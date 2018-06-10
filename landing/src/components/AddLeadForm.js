@@ -104,8 +104,8 @@ class AddLeadForm extends Component {
                 <Grid>
                     <Row className="form-title">
                         <Col md={12}>
-                            {/*<h1 className={'top-title'}>Registration</h1>*/}
-                            <img src={'img/latina-logo.jpg'} className={'reg-logo'} />
+                            <h1 className={'top-title'}>Registration</h1>
+                            {/*<img src={'img/latina-logo.jpg'} className={'reg-logo'} />*/}
                         </Col>
                     </Row>
 

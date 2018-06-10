@@ -19,9 +19,11 @@ const createLead = (req, res) => {
 };
 
 const getLeads = (req, res) => {
+
     LeadModel.find({})
         .populate()
         .exec((err, resp) => {
+
             res.status(200).send(resp);
         });
 };

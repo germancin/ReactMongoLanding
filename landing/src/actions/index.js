@@ -12,8 +12,8 @@ export const ERROR_SAVING_LEAD = 'ERROR_SAVING_LEAD';
 export const SIDE_BAR = 'SIDE_BAR';
 export const USER_AUTH = 'USER_AUTH';
 
-const uri = 'http://208.68.36.212:3040';
-// const uri = 'http://localhost:3040';
+const uri = 'http://192.241.141.101:3020';
+// const uri = 'http://localhost:3020';
 
 export const logOut = () => {
     const resp = axios.get(`${uri}/api/user/log_out`, {withCredentials: true});
@@ -53,7 +53,7 @@ export const checkTokenStatus = () => {
 };
 
 export const extendTokenLife = () => {
-    const resp = axios.get(`http://localhost:3040/api/user/extend_token_life`, {withCredentials: true});
+    const resp = axios.get(`http://localhost:3020/api/user/extend_token_life`, {withCredentials: true});
 
     return dispatch => {
         resp.then(({data}) => {
@@ -70,7 +70,6 @@ export const extendTokenLife = () => {
 };
 
 export const getLeads = () => {
-
     const leads = axios.get(`${uri}/api/lead`, {withCredentials: true});
 
     return dispatch => {
@@ -92,7 +91,7 @@ export const getLeads = () => {
 };
 
 export const signUpUser = (user) => {
-    const newUser = axios.post('http://localhost:3040/api/user', {
+    const newUser = axios.post('http://localhost:3020/api/user', {
         name:user.name,
         email:user.email,
         password:user.password,
@@ -187,7 +186,6 @@ export const addLead = (lead) => {
 };
 
 export const deleteLeads = (leadId) => {
-    
     const leadDelete = axios.post(`${uri}/api/lead/delete`, leadId, {withCredentials: true});
 
     return dispatch => {
@@ -236,8 +234,3 @@ export const syncLocalStore = (response) => {
 
     };
 };
-
-
-
-
-

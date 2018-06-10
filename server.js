@@ -5,8 +5,10 @@ const server = express();
 const db = require('./db');
 const leadRoutes = require('./api/routes/leadRoutes');
 const userRoutes = require('./api/routes/userRoutes');
-const port = process.env.PORT || 3040;
+const config = require('./config');
 const LeadModel = require('./api/models/leadModel');
+
+const port = process.env.PORT || config.port_to_listen;
 
 const faker = require('faker');
 
@@ -50,7 +52,7 @@ server.use(express.json());
 
 // Adding Headers for requests.
 server.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://208.68.36.212');
+    res.setHeader('Access-Control-Allow-Origin', 'http://192.241.141.101');
     // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -62,10 +64,7 @@ server.use(cookieParser());
 server.use('/api/lead', leadRoutes);
 server.use('/api/user', userRoutes);
 
-db.connectTo()
-    .then(() => console.log('\n... API Connected to Database ...\n'))
-    .catch(err => console.log('\n*** ERROR Connecting to Database ***\n', err));
-
+db.connectTo();
 
 server.listen(port, () => {
     console.log(`Server listening on ${port}`);

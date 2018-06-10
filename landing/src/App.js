@@ -35,24 +35,24 @@ class App extends Component {
 
                         <header className="App-header">
                             <Menu isOpen={ false }>
-
-                                    <img  className={'menu-logo'} src={'img/logo-alta-voz.png'} />
+                                    {/*<img  className={'menu-logo'} src={'img/logo-alta-voz.png'} />*/}
                                 <br/>
                                     <Link className={'sideLink'} to={'/'}>Home</Link>
                                     <Link className={'sideLink'} to={'/leads'}>Leads</Link>
-                                    {(!this.props.userAuth)
+                                    {/* {(!this.props.userAuth)
                                         ?
                                         <Link className={'sideLink'} to={'/signin'}>SignIn</Link>
                                         :
                                         <div className={'sideLink'} onClick={this.handleLogOut} >Logout</div>
-                                    }
+                                    } */}
 
                             </Menu>
                         </header>
                         <div className="App-intro">
                             <Route exact path="/" component={Landing}/>
                             <Route path="/signin" component={SignIn}/>
-                            <Route path="/leads"  component={SecureRoute(Leads)}/>
+                            {/*<Route path="/leads"  component={SecureRoute(Leads)}/>*/}
+                            <Route path="/leads"  component={Leads}/>
                         </div>
                     </div>
                 </Router>

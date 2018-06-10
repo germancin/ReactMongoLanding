@@ -34,34 +34,44 @@ const logOut = (req, res, next) => {
 const signInUser = (req, res) => {
     const user = new UserModel(req.body);
 
-    UserModel.findOne({email: user.email})
-        .then(usr => {
+    console.log('req.body:::', req.body);
 
-            if(usr === null) {
-                res.status(401).send();
-            }else{
-                usr.checkPassword(user.password)
-                    .then(isValid => {
+    const token = getTokenForUser({ user: 'german',
+        access: true }, '4h');
 
-                        if (isValid) {
-                            const token = getTokenForUser({ user: usr,
-                                                            access: true }, '4h');
+    res.cookie('access_token', token, { maxAge: 604800, httpOnly: true });
+    res.status(200).send({"user":'german', "token":token});
 
-                            res.cookie('access_token', token, { maxAge: 604800, httpOnly: true });
-                            res.status(200).send({"user":usr, "token":token});
 
-                        } else {
-                            res.status(400).json({ msg: 'Incorrect password' });
-                        }
-                    })
-                    .catch(err => {
-                        res.error(err)
-                    });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({error: "Something went wrong login you in. Try again.", info: err});
-        });
+    // UserModel.findOne({email: user.email})
+    //     .then(usr => {
+    //
+    //         if(usr === null) {
+    //             res.status(401).send();
+    //         }else{
+    //             usr.checkPassword(user.password)
+    //                 .then(isValid => {
+    //
+    //                     if (isValid) {
+    //                         const token = getTokenForUser({ user: usr,
+    //                                                         access: true }, '4h');
+    //
+    //                         res.cookie('access_token', token, { maxAge: 604800, httpOnly: true });
+    //                         res.status(200).send({"user":usr, "token":token});
+    //
+    //                     } else {
+    //                         res.status(400).json({ msg: 'Incorrect password' });
+    //                     }
+    //                 })
+    //                 .catch(err => {
+    //                     res.error(err)
+    //                 });
+    //         }
+    //     })
+    //     .catch(err => {
+    //         res.status(500).send({error: "Something went wrong login you in. Try again.", info: err});
+    //     });
+
 };
 
 module.exports = {createUser, getUsers, signInUser, logOut};
